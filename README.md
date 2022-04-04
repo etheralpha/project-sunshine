@@ -1,24 +1,145 @@
-# project-sunshine
-This is the repo for https://ethsunshine.com, a site to monitor the Ethereum Network's decentralization health.
+# Project Sunshine
 
-## Introduction & Purpose
-Maintaining diversity of clients is a key security factor of any decentralized blockchain. Ethereum is currently running two networks at the same time - the Execution Layer (EL) containing the traditional PoW chain and the Consensus Layer (CL) containing the new released PoS chain. As it stands today, the EL has 100% of block proposals coming from the 'Geth' client. The CL has 4 clients of varying popularity, however 'Prysm' is the largest at >50% of the network. For perspective, the next highest client is around 29%.
+This is the repo for <https://ethsunshine.com>, a site to monitor the health of Ethereum's decentralization.
 
-The purpose of project-sunshine is to identify a scoring system for centralization vectors, set target scores for each vector, and then work with the community to meet those target scores. 
+|Discord Server|
+|:---:|
+|![Discord Shield](https://discordapp.com/api/guilds/825089839309389864/widget.png?style=shield)|
 
-Information on different aspects of client diversity is often scattered across multiple sites and sources. This project would bring all that data into one easy-to-reference website.  Taking all the client diversity data and combining it with the decentralization goals should create a powerful tool for the community to more effectively push for client diversity.
+**Table of Contents**
+- [Intro](#intro)
+	- [Introduction & Purpose](#introduction--purpose)
+	- [Contributing](#contributing)
+- [Current Metrics](#current-metrics)
+- [Adding a New Metric](#adding-a-new-metric)
+	- [Metric Outline](#metric-outline)
+	- [Metric Integration](#metric-integration)
+	- [Modal Content](#modal-content)
+- [Development](#development)
+	- [Local Development](#local-development)
+	- [Pull Requests](#pull-requests)
+	- [Merging](#merging)
 
-## Currently Proposed Centralization Vectors
-Below is the list of currently proposed centralization vectors to set and monitor goals for:
-1) Consensus Client Diversity
-2) Execution Client Diversity
-3) Data Center Validators (Hosted versus Non-Hosted)
-4) Government Entity Stake Weight
-5) Largest Entity Stake Weight 
-6) Geolocation Diversity
 
-## Community Input
-Project-Sunshine is always welcoming community input! Below are some ways to help out with the project!
-- Additional centralization vectors to track / goals to set
-- Sources to pull client diversity data from
-- Ideas to help reach the stated client diversity goals
+---
+
+
+## Intro
+
+
+### Introduction & Purpose
+
+Thanks to community efforts, many are now aware that client diversity is a key security factor of any decentralized blockchain. However, it's not the only risk vector.
+
+The purpose of Project Sunshine is to identify centralization vectors, determine the metrics to monitor, set danger/goal/target values for each, and then work with the community to meet those targets. 
+
+
+### Contributing
+
+Project Sunshine is always welcoming community input! Below are some ways to help out with the project, [join us on Discord to collaborate](https://discord.gg/zE8guNfG49)!
+
+- Determining centralization vectors
+- Determing metrics to monitor these vectors 
+- Finding data sources for these metrics
+- Creating and providing data sources yourself
+- Writing content for the "Take Action" modals
+- Finding useful resources to list in these modals
+- Organize initiatives to help reach the metric goals
+
+
+---
+
+
+## Current Metrics
+
+This list contains centralization vectors that pose a risk to the health of the network.
+
+- [x] Consensus Client Diversity
+- [x] Execution Client Diversity
+- [ ] Data Center Validators (Hosted versus Non-Hosted)
+- [ ] Government Entity Stake Weight
+- [ ] Largest Entity Stake Weight 
+- [ ] Geolocation Diversity
+
+
+---
+
+
+## Adding a New Metric
+
+
+### Metric Outline
+
+- What does this metric monitor?
+- What is the danger if too much centralization occurs?
+- How do we track this?
+- What level is deemed dangerous? (danger_value)
+- What level is deemed ideal? (goal_value)
+- Are there data sources available?
+
+
+### Metric Integration
+
+1. Add an entry to `data/metrics.yml` using the template provided and using previous entries as examples.
+1. Create a Netlify function in `_netlify/functions/` using existing files as an example.
+	- The function name **MUST** be the same as the data source name. If another metric is already using that name, append a dash followed by a sequential integer. For example, if `blockprint` is your data source and being used already, name the data source and Netlify function file `blockprint-1.js` (then `blockprint-2.js`, etc). For the select dropdown, the data source name is split at the dash and only the first item is presented to the user.
+	- Include an example of the response output.
+	- Maintain the 12hr cache for the function
+	- The value returned from function must be the final metric value used to update the dashboard.
+	- The value should follow convention where a higher value is good and a lower value is bad
+	- If the data fails to load, the `default_value` specified in `metrics.yml` will be used as a fallback (will be updated periodically to remain relevant).
+
+
+### Modal Content
+
+1. Modal content is kept in `_modal_content`.
+1. The modal content should follow `_modal_content/template.md` and list:
+	- What is this metric?
+	- Why is it important?
+	- How do we improve it?
+	- Resources (list of important links)
+1. The file name **MUST** be the same as the metric's `id` in `data/metrics.yml`.
+1. The goal is to provide and overview with link to resources for furth learning, action, dashboard, and tools. The goal (at least at the moment) is not to be an authoritative informational source, but a gateway to existing established resources.
+
+
+---
+
+
+## Development
+
+
+### Local Development
+
+This project uses Jekyll and Netlify Functions.
+
+1. Fork the repo
+1. Install Jekyll dependencies: `bundle install`
+1. Install Netlify dependencies: `npm install`
+	- Note: Use Node v16 (Netlify has issues with Node v17)
+1. Install Netlify CLI: `npm install netlify-cli -g`
+1. Authenticate Netlify account: `netlify login`
+1. Branch off the `dev` branch to make your changes 
+1. Start the local server: `netlify dev`
+1. The local server should open automatically
+1. Once your changes are made, submit a PR back to the `dev` branch
+
+Resources:
+
+- [Netlify Setup](https://docs.netlify.com/cli/get-started/)
+- [Netlify Functions](https://docs.netlify.com/functions/build-with-javascript/)
+- [Jekyll Docs](https://jekyllrb.com/docs/)
+- [Liquid Syntax](https://shopify.github.io/liquid/basics/introduction/)
+
+
+### Pull Requests
+1. Branch off the `dev` branch to make your changes
+1. Once your changes are made, submit a PR back to the `dev` branch
+1. If `dev` has had updates between the time you branched and finished your changes, please rebase your branch
+
+
+### Merging
+1. The `dev` branch is the working branch
+1. Pull requests are merged into `dev`
+1. Releases are branched off of `dev`, named using `vX.X` semantic versioning (no patch number)
+1. Release branches are then merged to `main`
+
