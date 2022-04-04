@@ -2,7 +2,7 @@
 This is the repo for https://ethsunshine.com, a site to monitor the Ethereum's decentralization health.
 
 ## Introduction & Purpose
-Maintaining diversity of clients is a key security factor of any decentralized blockchain. Ethereum is currently running two networks at the same time - the Execution Layer (EL) containg the traditional PoW chain and the Consensus Layer (CL) running the PoS chain. As it stands today, the EL has 100% of block proposal's coming from the 'Geth' client. The CL has 4 clients of varying popularity, however 'Prysm' is the largest at >50% of the network. For perspective, the next highest client is around 29%.
+Maintaining diversity of clients is a key security factor of any decentralized blockchain. Ethereum is currently running two networks at the same time - the Execution Layer (EL) containg the traditional PoW chain and the Consensus Layer (CL) containing the PoS chain. As it stands today, the EL has 100% of block proposal's coming from the 'Geth' client. The CL has 4 clients of varying popularity, however 'Prysm' is the largest at >50% of the network. For perspective, the next highest client is around 29%.
 
 The purpose of project-sunshine is to identify a scoring system for centralization vectors, set target scores for each vector, and then work towards meet those scores. 
 
