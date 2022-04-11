@@ -5,7 +5,7 @@ let lastUpdate = 0;
 
 // https://github.com/sigp/blockprint/blob/main/docs/api.md
 // https://api.blockprint.sigp.io/blocks_per_client/${startEpoch}/${endEpoch}
-// example Blockprint response:
+// example response:
 // {
 //   "Uncertain": 0,
 //   "Lighthouse": 46030,
@@ -37,8 +37,8 @@ exports.handler = async (event, context) => {
     try {
       const response = await fetch(blockprintEndpoint).then( response => response.json() );
       const metricValue = getMetricValue(response, 1);
-      console.log({"blockprint_response": response});
-      console.log({"dataSource":"blockprint","metricValue":metricValue});
+      // console.log({"blockprint-consensus-clients_response": response});
+      console.log({"dataSource":"blockprint-consensus-clients","metricValue":metricValue});
       return metricValue;
     } catch (err) {
       return {
@@ -93,7 +93,7 @@ exports.handler = async (event, context) => {
       sampleSize += item["val"];
     });
 
-    // calculate the marketshare held by majority clients
+    // calculate the marketshare held by top (n) clients
     value = Math.round(sampleSize/totalSize*10000)/100;
 
     // console.log(obj);

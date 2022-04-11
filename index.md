@@ -105,10 +105,12 @@ layout: default
                   Danger: < {{metric.danger_value}}%
                   <span class="mx-1 mx-xl-2">|</span>
                   Goal: {{metric.goal_value}}% +
-                  <span class="mx-1 mx-xl-2">|</span>
-                  Target: {{metric.target_value}}%
-                  {%- if metric.target_date -%}
-                    <span class="d-none d-xl-inline ms-1">by {{metric.target_date}}</span>
+                  {%- if metric.target_value -%}
+                    <span class="mx-1 mx-xl-2">|</span>
+                    Target: {{metric.target_value}}%
+                    {%- if metric.target_date -%}
+                      <span class="d-none d-xl-inline ms-1">by {{metric.target_date}}</span>
+                    {%- endif -%}
                   {%- endif -%}
                 </label>
                 <!-- Progress Bar -->
@@ -123,19 +125,19 @@ layout: default
                   <div id="progress-{{metric.id}}">
                     <div class="progress-bar position-absolute bg-{{color}}" role="progressbar" 
                         aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{metric.default_value}}" 
-                        style="width: {{metric.default_value}}%; height: 1.07rem;">
+                        style="width: {{metric.default_value}}%; height: 1.1rem;">
                       {{metric.default_value}}%
                     </div>
                   </div>
                   {%- assign red_width = metric.danger_value -%}
                   <div class="progress-bar bg-trans progress-danger" role="progressbar" 
-                    style="width: {{red_width}}%; height: 1.07rem"></div>
+                    style="width: {{red_width}}%; height: 1.1rem"></div>
                   {%- assign yellow_width = metric.goal_value | minus: metric.danger_value -%}
                   <div class="progress-bar bg-trans progress-warning" role="progressbar" 
-                    style="width: {{yellow_width}}%; height: 1.07rem"></div>
+                    style="width: {{yellow_width}}%; height: 1.1rem"></div>
                   {%- assign green_width = 100 | minus: metric.danger_value | minus: yellow_width -%}
                   <div class="progress-bar bg-trans progress-success" role="progressbar" 
-                    style="width: {{green_width}}%; height: 1.07rem"></div>
+                    style="width: {{green_width}}%; height: 1.1rem"></div>
                 </div>
               </div>
               <!-- Buttons -->
@@ -165,9 +167,9 @@ layout: default
           </div>
           <div class="modal-body">
             {%- assign post_name = metric.id  -%}
-            {%- assign modal_content = site.modal_content | where: 'slug', post_name | first -%}
+            {%- assign modal_content = site.metric_modal_content | where: 'slug', post_name | first -%}
             {%- if modal_content == null -%}
-              {%- assign modal_content = site.modal_content | where: 'slug', "contribute" | first -%}
+              {%- assign modal_content = site.info_modal_content | where: 'slug', "contribute" | first -%}
             {%- endif -%}
             {{ modal_content.output }}
           </div>

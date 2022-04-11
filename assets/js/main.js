@@ -116,7 +116,7 @@ function updateProgressBar(data) {
   let progressBarParent = document.getElementById("progress-" + metricId);
   let progressBar = `<div class="progress-bar position-absolute bg-${color}" role="progressbar" 
     aria-valuemin="0" aria-valuemax="100" aria-valuenow="${metricValue}" 
-    style="width: ${metricValue}%; height: 1.07rem;">
+    style="width: ${metricValue}%; height: 1.1rem;">
     ${metricValue}%
   </div>`;
   progressBarParent.innerHTML = progressBar;
@@ -162,10 +162,10 @@ async function getHealthLevel() {
   })
 
   // calculate the sunniness percentage
-  let percent = accumulatedValue / totalSize;
+  let percent = (accumulatedValue / totalSize) + 20;
   console.log(`The sunniness (decentralization health) level is ${Math.round(percent * 100) / 100}%`)
 
-  return percent + 20;
+  return percent;
 }
 
 
