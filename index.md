@@ -12,19 +12,19 @@ layout: default
         <div id="healthContainer" class="d-none fw-light my-4">
           <p id="healthLevel" class="mx-auto mb-2">Overall Health: </p>
           <p id="healthEmojis" class="mx-auto py-1">
-            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 0-20">
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 0-20%">
               {{site.data.icons.health_0}}</span>
-            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 20-40">
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 20-40%">
               {{site.data.icons.health_1}}</span>
-            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 40-50">
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 40-50%">
               {{site.data.icons.health_2}}</span>
-            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 50-65">
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 50-65%">
               {{site.data.icons.health_3}}</span>
-            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 65-75">
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 65-75%">
               {{site.data.icons.health_4}}</span>
-            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 75-85">
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 75-85%">
               {{site.data.icons.health_5}}</span>
-            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 85-100">
+            <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 85-100%">
               {{site.data.icons.health_6}}</span>
           </p>
         </div>
@@ -42,11 +42,11 @@ layout: default
         {%- assign placeholder = "" -%}
         {%- assign opacity = "" -%}
         {%- assign hide = "" -%}
-        {% if metric.disabled %}
+        {%- if metric.disabled -%}
           {%- assign placeholder = "placeholder" -%}
           {%- assign opacity = 'style="opacity: 0.4"' -%}
           {%- assign hide = "d-none" -%}
-        {% endif %}
+        {%- endif -%}
         <div class="col-12 col-sm-10 col-md-8 col-lg-6 mb-3">
           <!-- Card -->
           <div id="card-{{metric.id}}" class="card h-100 bg-eth placeholder-glow" {{opacity}}>
@@ -76,7 +76,7 @@ layout: default
                       <select id="select-{{metric.id}}" class="form-select form-select-sm" aria-label="data source select" onchange='getData("{{metric.id}}", this.value, {{metric.default_value}}).then(updateProgressBar)'>
                         {%- for source in metric.data_sources -%}
                           {%- assign selected = "" -%}
-                          {% if my_array.first %}{%- assign selected = "selected" -%}{% endif %}
+                          {%- if my_array.first -%}{%- assign selected = "selected" -%}{%- endif -%}
                           <option value="{{source}}"{{selected}}>{{source | split: "-" | first}}</option>
                         {%- endfor -%}
                       </select>
@@ -107,12 +107,12 @@ layout: default
                 <!-- Progress Bar -->
                 <div class="progress position-relative {{hide}}" style="height: 1.1rem;">
                   {%- assign color = "warning" -%}
-                  {% if metric.default_value < metric.danger_value %}
+                  {%- if metric.default_value < metric.danger_value -%}
                     {%- assign color = "danger" -%}
-                  {% endif %}
-                  {% if metric.default_value > metric.goal_value %}
+                  {%- endif -%}
+                  {%- if metric.default_value > metric.goal_value -%}
                     {%- assign color = "success" -%}
-                  {% endif %}
+                  {%- endif -%}
                   <div id="progress-{{metric.id}}">
                     <div class="progress-bar position-absolute bg-{{color}}" role="progressbar" 
                         aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{metric.default_value}}" 
@@ -133,16 +133,6 @@ layout: default
               </div>
               <!-- Buttons -->
               <div class="card-buttons text-start">
-                {%- comment -%}
-                  {%- if metric.link_action -%}
-                    <a href="{{metric.link_action}}" target="_blank" class="btn btn-sunshine text-dark btn-sm me-2 {{hide}}">Take Action</a>
-                  {%- endif -%}
-                  {%- if metric.link_learn -%}
-                    <a href="{{metric.link_learn}}" target="_blank" class="btn btn-sunshine btn-sm {{hide}}">Learn More</a>
-                  {%- endif -%}
-                {%- endcomment -%}
-                {%- assign post_name = metric.id  -%}
-                {%- assign modal_content_exists = site.modal_content | where: 'slug', post_name | first -%}
                 {%- if metric.modal_enabled -%}
                   <a class="btn btn-sunshine text-dark btn-sm {{hide}}" data-bs-toggle="modal" data-bs-target="#modal-{{metric.id}}">Take Action!</a>
                 {%- endif -%}

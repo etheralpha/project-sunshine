@@ -1,7 +1,5 @@
 # - title:             # metric title; this will be shown as the card heading
-#   id:                # metric id, no spaces; this must not change as it's used to id elements
-#   link_action:       # link that helps improve the metric
-#   link_learn:        # link to learn more about the topic
+#   id:                # metric id, no spaces; THIS MUST NOT CHANGE as it's used to id elements
 #   disabled:          # true/false; true = disables the metric card; false = card functions normally
 #   modal_enabled:     # true/false; true = show tooltip icon; false = hide tooltip option
 #   tooltip_enabled:   # true/false; true = enable info modal; false = disable info modal
@@ -13,14 +11,12 @@
 #   target_date:       # (optional) date to reach the near term target
 #   influence:         # the influence/weight in relation to other metrics when calculating how sunny it is
 #   data_sources:      # different sources to populate data from; first listed is the default
-#     -                # array of data sources; netlify function must have same name; all lowercase, no spaces;
+#     -                # array of data sources; netlify function MUST have same name; all lowercase, no spaces;
 #     -                # each line must start with a dash; the first data source listed is the default
 
 # Template to copy for new entries
 # - title: 
 #   id: 
-#   link_action: 
-#   link_learn: 
 #   disabled: true
 #   modal_enabled: false
 #   tooltip_enabled: false
@@ -37,8 +33,6 @@
 
 - title: Consensus Client Diversity
   id: consensus-clients
-  link_action: https://clientdiversity.org/#switch
-  link_learn: https://clientdiversity.org
   disabled: false
   modal_enabled: true
   tooltip_enabled: true
@@ -54,8 +48,6 @@
     - blockprint
 - title: Execution Client Diversity
   id: execution-clients
-  link_action: https://clientdiversity.org/#switch
-  link_learn: https://clientdiversity.org
   disabled: false
   modal_enabled: true
   tooltip_enabled: true
@@ -70,8 +62,6 @@
     - ethernodes
 - title: Non-Hosted Validators
   id: hosted-validators
-  link_action: 
-  link_learn: 
   disabled: true
   modal_enabled: false
   tooltip_enabled: true
@@ -86,8 +76,6 @@
     # - nodewatch
 - title: Non-Staking Pool Stake Weight
   id: staking-pools
-  link_action: # https://pools.invis.cloud/
-  link_learn: 
   disabled: true
   modal_enabled: false
   tooltip_enabled: true
@@ -101,8 +89,6 @@
   data_sources: 
 - title: Government Entity Stake Weight
   id: government-entity
-  link_action: 
-  link_learn: 
   disabled: true
   modal_enabled: false
   tooltip_enabled: true
@@ -116,8 +102,6 @@
   data_sources: 
 - title: Largest Entity Stake Weight
   id: largest-entity
-  link_action: 
-  link_learn: 
   disabled: true
   modal_enabled: false
   tooltip_enabled: true
@@ -131,8 +115,6 @@
   data_sources: 
 - title: Geolocation Diversity
   id: geolocation-civersity
-  link_action: 
-  link_learn: 
   disabled: true
   modal_enabled: false
   tooltip_enabled: true

@@ -53,8 +53,6 @@ footer {
   border-radius: var(--radius-sm);
 }
 .btn-sunshine:hover {
-  /*background-color: rgb(183, 208, 248, 0.3) !important;*/
-  /*background-color: rgba(180,180,180,0.3) !important;*/
   background-image: linear-gradient(140deg, var(--color-sunshine-cyan) 0%, var(--color-sunshine-violet) 50%, var(--color-sunshine-lavendar) 75%);
   background-size: 400%;
   background-position: top;
@@ -227,23 +225,10 @@ select:disabled {
 
 .modal-content {
   background-color: rgb(247 248 255);
-  /*color: rgba(0,0,0,0.8);*/
 }
 .modal-body {
   margin-top: -1.5rem;
 }
-/*.modal-body h1,
-.modal-body h2 {
-  margin-top: 2.5rem;
-  margin-bottom: 2rem;
-}
-.modal-body h3,
-.modal-body h4,
-.modal-body h5,
-.modal-body h6 {
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-}*/
 .modal-body h1,
 .modal-body h2,
 .modal-body h3,
@@ -253,7 +238,7 @@ select:disabled {
   font-size: 1.25rem;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
-  /*letter-spacing: 0.015rem;*/
+  letter-spacing: 0.015rem;
 }
 .modal-body p {
   line-height: 1.7rem;
