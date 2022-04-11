@@ -32,6 +32,7 @@ body {
   background-color: rgba(153,153,153,0.7);
   transition: 3s ease;
 }
+nav,
 header,
 section,
 footer {
@@ -52,7 +53,8 @@ footer {
   background-color: rgba(255,255,255,0.45) !important;
   border-radius: var(--radius-sm);
 }
-.btn-sunshine:hover {
+.btn-sunshine:hover,
+.btn-sunshine.active {
   background-image: linear-gradient(140deg, var(--color-sunshine-cyan) 0%, var(--color-sunshine-violet) 50%, var(--color-sunshine-lavendar) 75%);
   background-size: 400%;
   background-position: top;
@@ -60,6 +62,27 @@ footer {
 }
 
 
+#aboutInfo {
+  position: absolute;
+  z-index: 1;
+  top: 0.8rem;
+  right: 1.4rem;
+  padding: 5px;
+  cursor: pointer;
+}
+#aboutInfo svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+
+
+#healthInfo svg {
+  margin-top: -1rem;
+  margin-left: 0.3rem;
+  width: 1rem;
+  height: 1rem;
+}
 #healthEmojis {
   background: var(--trans-white-light);
   max-width: 280px;
@@ -240,8 +263,8 @@ select:disabled {
   margin-bottom: 0.75rem;
   letter-spacing: 0.015rem;
 }
-.modal-body p {
-  line-height: 1.7rem;
+.modal-body h1 {
+  font-size: 1.5rem;
 }
 .modal-body li {
   margin-top: 0.75rem;

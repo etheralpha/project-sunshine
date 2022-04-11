@@ -9,7 +9,7 @@ markdown: kramdown
 livereload: true
 
 # Navigation
-nav_enabled: false
+nav_enabled: true
 
 # Links
 github_repo: https://github.com/etheralpha/project-sunshine
