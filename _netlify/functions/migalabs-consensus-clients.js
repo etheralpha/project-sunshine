@@ -1,21 +1,21 @@
 import fetch from 'node-fetch';
-const API_ENDPOINT = 'https://ethernodes.org/api/clients';
+const API_ENDPOINT = 'https://migalabs.es/api/v1/client-distribution?crawler=london';
 let data;
 let lastUpdate = 0;
 
 
-// https://ethernodes.org/api/clients
-// example ethernodes response:
-// [
-//   { "client":"geth",         "value":4421 },
-//   { "client":"openethereum", "value":333  },
-//   { "client":"erigon",       "value":300  },
-//   { "client":"nethermind",   "value":63   },
-//   { "client":"besu",         "value":31   },
-//   { "client":"coregeth",     "value":5    },
-//   { "client":"teth",         "value":3    },
-//   { "client":"merp-client",  "value":2    }
-// ]
+// https://migalabs.es/api-documentation
+// https://migalabs.es/api/v1/client-distribution?crawler=london
+// example response:
+// {
+//     "Grandine": 26,
+//     "Lighthouse": 664,
+//     "Lodestar": 4,
+//     "Nimbus": 185,
+//     "Others": 1,
+//     "Prysm": 2349,
+//     "Teku": 321
+// }
 
 
 exports.handler = async (event, context) => {
@@ -23,17 +23,9 @@ exports.handler = async (event, context) => {
   const fetchData = async () => {
     try {
       const response = await fetch(API_ENDPOINT).then( response => response.json() );
-      // reformat to into obj
-      let responseAsObj = {};
-      for (let item in response) {
-        let key = response[item]["client"];
-        let val = response[item]["value"];
-        responseAsObj[key] = val;
-      }
-      const metricValue = getMetricValue(responseAsObj, 1);
-      console.log({"ethernodes_response": response});
-      console.log({"ethernodes_responseAsObj": responseAsObj});
-      console.log({"dataSource":"ethernodes","metricValue":metricValue});
+      const metricValue = getMetricValue(response, 1);
+      // console.log({"migalabs-consensus-clients_response": response});
+      console.log({"dataSource":"migalabs-consensus-clients","metricValue":metricValue});
       return metricValue;
     } catch (err) {
       return {
@@ -45,7 +37,7 @@ exports.handler = async (event, context) => {
     }
   }
 
-  // if cached data from the past 12 hrs, send that, otherwise fetchData
+  // If cached data from the past 12 hrs, send that, otherwise fetchData
   const currentTime = new Date().getTime();
   const noData = (data === undefined || data === null);
   if (noData || ( currentTime - lastUpdate > 43200000 )) { // 43200000 = 12hrs
@@ -88,7 +80,7 @@ exports.handler = async (event, context) => {
       sampleSize += item["val"];
     });
 
-    // calculate the marketshare held by majority clients
+    // calculate the marketshare held by top (n) clients
     value = Math.round(sampleSize/totalSize*10000)/100;
 
     // console.log(obj);

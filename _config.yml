@@ -15,4 +15,5 @@ nav_enabled: true
 github_repo: https://github.com/etheralpha/project-sunshine
 
 collections:
-  - modal_content
+  - metric_modal_content
+  - info_modal_content

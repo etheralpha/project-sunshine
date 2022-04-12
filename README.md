@@ -82,7 +82,7 @@ This list contains centralization vectors that pose a risk to the health of the 
 
 1. Add an entry to `data/metrics.yml` using the template provided and using previous entries as examples.
 1. Create a Netlify function in `_netlify/functions/` using existing files as an example.
-	- The function name **MUST** be the same as the data source name. If another metric is already using that name, append a dash followed by a sequential integer. For example, if `blockprint` is your data source and being used already, name the data source and Netlify function file `blockprint-1.js` (then `blockprint-2.js`, etc). For the select dropdown, the data source name is split at the dash and only the first item is presented to the user.
+	- The function name **MUST** be the same as the data source name. The naming convention is the name of the data provider, followed by a dash followed, followed by the metric `id`. For example, if `blockprint` is the data provider or a metric with `id: archival-nodes`, you would name the data source `blockprint-archival-nodes` and Netlify function file `blockprint-archival-nodes.js`.
 	- Include an example of the response output.
 	- Maintain the 12hr cache for the function
 	- The value returned from function must be the final metric value used to update the dashboard.
@@ -92,8 +92,8 @@ This list contains centralization vectors that pose a risk to the health of the 
 
 ### Metric Modal Content
 
-1. Modal content is kept in `_modal_content`.
-1. The modal content should follow `_modal_content/template.md` and list:
+1. Modal content is kept in `_metric_modal_content`.
+1. The modal content should follow `_metric_modal_content/template.md` and list:
 	- What is this metric?
 	- Why is it important?
 	- How do we improve it?
