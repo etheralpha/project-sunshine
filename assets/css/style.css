@@ -40,6 +40,7 @@ footer {
 }
 
 
+
 .text-trans {
   color: rgba(0,0,0,0.8);
 }
@@ -48,29 +49,33 @@ footer {
 }
 
 
+
 .btn-sunshine {
-  border-color: rgba(190, 190, 190, 0.5) !important;
-  background-color: rgba(255,255,255,0.45) !important;
+  background-color: rgba(255,255,255,0.45);
   border-radius: var(--radius-sm);
+  border-color: rgb(184 187 223 / 50%) !important;
 }
 .btn-sunshine:hover,
 .btn-sunshine.active {
   background-image: linear-gradient(140deg, var(--color-sunshine-cyan) 0%, var(--color-sunshine-violet) 50%, var(--color-sunshine-lavendar) 75%);
   background-size: 400%;
   background-position: top;
-  border-color: rgba(190, 190, 190, 0.5) !important;
+}
+.btn svg {
+  margin-top: -4px
 }
 
 
-#aboutInfo {
+
+#darkModeToggle {
   position: absolute;
   z-index: 1;
-  top: 0.8rem;
-  right: 1.4rem;
+  top: 0.55rem;
+  right: 1rem;
   padding: 5px;
   cursor: pointer;
 }
-#aboutInfo svg {
+#darkModeToggle svg {
   height: 1.5rem;
   width: 1.5rem;
 }
@@ -124,6 +129,7 @@ footer {
 }
 
 
+
 .card {
   position: relative;
   border-radius: 0.6rem;
@@ -161,11 +167,13 @@ footer {
 }
 
 
+
 select {
   margin-top: -5px;
   background-color: var(--trans-white-light) !important;
   border-radius: var(--radius-sm) !important;
-  border-color: rgba(190, 190, 190, 0.5) !important;  
+  /*border-color: rgba(190, 190, 190, 0.5) !important;  */
+  border-color: rgb(184 187 223 / 50%) !important;
 }
 select:disabled {
   background-color: rgba(255,255,255,0.1) !important;
@@ -198,6 +206,7 @@ select:disabled {
   height: auto;
   line-height: inherit;
 }
+
 
 
 .progress-label {
@@ -234,6 +243,7 @@ select:disabled {
 }
 
 
+
 .placeholder,
 .placeholder:hover {
   cursor: default;
@@ -246,11 +256,12 @@ select:disabled {
 }
 
 
+
 .modal-content {
   background-color: rgb(247 248 255);
 }
-.modal-body {
-  margin-top: -1.5rem;
+.modal-body>*:first-child {
+  margin-top: 0.75rem;
 }
 .modal-body h1,
 .modal-body h2,
@@ -263,22 +274,108 @@ select:disabled {
   margin-bottom: 0.75rem;
   letter-spacing: 0.015rem;
 }
-.modal-body h1 {
-  font-size: 1.5rem;
-}
 .modal-body li {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
 }
 .modal-body img {
   margin: 5px;
-  max-height: 250px;
+  max-height: 3\250px;
   max-width: calc(100% - 10px);
   display: block;
 }
 
 
-.contribute svg {
-  margin-top: -4px
+
+.markdown-page h1 {
+  font-size: 1.5rem;
 }
+.markdown-page h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+}
+.markdown-page h3,
+.markdown-page h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.markdown-page li {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.markdown-page img {
+  margin: 5px;
+  max-height: 3\250px;
+  max-width: calc(100% - 10px);
+  display: block;
+}
+
+
+
+.dark-mode body {
+  background-image: none;
+  background-color: #000;
+}
+.dark-mode #sun {
+  opacity: 0.5;
+}
+.dark-mode #clouds {
+  display: none;
+}
+.dark-mode #darkModeToggle svg {
+  fill: rgb(162 170 188 / 80%) !important;
+}
+.dark-mode .markdown-page,
+.dark-mode .navbar-light .navbar-nav .nav-link,
+.dark-mode header,
+.dark-mode header .text-trans,
+.dark-mode footer .text-trans,
+.dark-mode .btn,
+.dark-mode .modal-content,
+.dark-mode .modal-content .text-trans {
+  color: rgb(162 170 188 / 80%) !important;
+}
+.dark-mode #healthEmojis,
+.dark-mode .card {
+  background-color: rgb(155 163 187 / 18%) !important;
+  color: rgb(236 238 255 / 59%) !important;
+}
+.dark-mode #healthEmojis svg {
+  fill: rgb(236 238 255 / 20%);
+}
+.dark-mode select,
+.dark-mode .btn-sunshine {
+  color: rgba(0,0,0,0.8) !important;
+  border-color: rgb(66 67 79 / 50%) !important;
+  background-color: rgb(162 170 188 / 80%) !important;
+}
+.dark-mode select:disabled {
+  background-color: rgb(155 163 187 / 30%) !important;
+  color: rgba(0,0,0,0.5) !important;
+}
+.dark-mode .btn-sunshine:hover {
+  background-image: linear-gradient(140deg, rgb(166 252 245 / 50%) 0%, rgb(207 191 249 / 50%) 50%, rgb(203 174 255 / 50%) 75%);
+}
+.dark-mode .progress {
+  background-color: rgb(162 170 188 / 10%);
+}
+.dark-mode .coming-soon {
+  opacity: 0.75;
+  color: rgb(107 108 119 / 80%) !important;
+}
+.dark-mode .modal-content,
+.dark-mode .modal-content .text-trans {
+  background-color: #000;
+}
+.dark-mode .modal-header,
+.dark-mode .modal-footer,
+.dark-mode .modal-body {
+  background-color: rgb(155 163 187 / 10%) !important;
+  color: rgb(236 238 255 / 59%) !important;
+}
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+  border-color: rgb(162 170 188 / 20%) !important;
+}
+
 

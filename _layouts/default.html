@@ -7,6 +7,10 @@
   	{%- endif -%}
     <div id="sun"></div>
     <div id="clouds"></div>
+    <div id="darkModeToggle">
+      <span id="enableDarkMode" onclick="setDarkMode('true')">{{site.data.icons.sun}}</span>
+      <span id="disableDarkMode" class="d-none" onclick="setDarkMode('false')">{{site.data.icons.sun}}</span>
+    </div>
     {{content}}
   	{%- include partials/footer.html -%}
     <!-- Bootstrap 5 JS -->
