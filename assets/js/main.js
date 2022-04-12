@@ -42,8 +42,8 @@ function load() {
       getData(metricId, dataSource, defaultValue).then(updateProgressBar);
     }
   }
-  // calculate and set the sunniness level, runs only on load
-  calculateSun().then(setSun).then(setHealthLevel);
+  // calculate health level, set the sunniness, and show the health level; runs only on load
+  getHealthLevel().then(setSun).then(setHealthLevel);
 }
 window.onload = load();
 
@@ -126,8 +126,8 @@ function updateProgressBar(data) {
 }
 
 
-// calculate the sun's position based on the decentralization health
-async function calculateSun() {
+// calculate the decentralization health level
+async function getHealthLevel() {
   // standardized zones to calculate each metric against so (for example) metrics
   // with a value of 30% and a danger_value of 40 and 70 are treated equally)
   let standardizedDanger = overallDanger;
@@ -165,7 +165,7 @@ async function calculateSun() {
   let percent = accumulatedValue / totalSize;
   console.log(`The sunniness (decentralization health) level is ${Math.round(percent * 100) / 100}%`)
 
-  return percent;
+  return percent + 20;
 }
 
 

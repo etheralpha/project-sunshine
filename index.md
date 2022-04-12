@@ -10,7 +10,14 @@ layout: default
       <div class="col-12 col-sm-10 col-md-8 mx-auto mb-4">
         <p class="lead fw-normal">A dashboard to measure the health of Ethereum's decentralization.</p>
         <div id="healthContainer" class="d-none fw-light my-4">
-          <p id="healthLevel" class="mx-auto mb-2">Overall Health: </p>
+          <p class="mx-auto mb-2">
+            <span id="healthLevel">Overall Health: </span>
+            <span id="healthInfo" data-bs-toggle="modal" data-bs-target="#modal-faq">
+              <span data-bs-toggle="tooltip" data-bs-placement="top" title="Click to open">
+                {{site.data.icons.tooltip}}
+              </span>
+            </span>
+          </p>
           <p id="healthEmojis" class="mx-auto py-1">
             <span data-bs-toggle="tooltip" data-bs-placement="top" title="Health 0-20%">
               {{site.data.icons.health_0}}</span>
@@ -146,7 +153,7 @@ layout: default
 </section>
 
 
-<!-- Modal -->
+<!-- Metric Modal -->
 {%- for metric in metrics -%}
   {%- if metric.disabled != true and metric.modal_enabled  -%}
     <div class="modal fade" id="modal-{{metric.id}}" tabindex="-1" aria-labelledby="modal-title-{{metric.id}}" aria-hidden="true">
@@ -172,4 +179,24 @@ layout: default
     </div>
   {%- endif -%}
 {%- endfor -%}
+
+
+<!-- FAQ Modal -->
+<div class="modal fade" id="modal-faq" tabindex="-1" aria-labelledby="modal-title-faq" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content text-trans">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title-faq">FAQ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {%- assign faq = site.pages | where: 'name', "faq.md" | first -%}
+        {{ faq.content }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sunshine" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 

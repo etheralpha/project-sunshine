@@ -39,7 +39,7 @@
   tooltip_text: This metric shows percent marketshare of the minority consensus clients.
   default_value: 43.67
   goal_value: 67
-  danger_value: 50
+  danger_value: 34
   target_value: 55
   target_date: Jun 2022
   influence: 1
@@ -54,7 +54,7 @@
   tooltip_text: This metric shows percent marketshare of the minority execution clients.
   default_value: 16.06
   goal_value: 67
-  danger_value: 50
+  danger_value: 34
   target_value: 30
   target_date: 
   influence: 1

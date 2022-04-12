@@ -14,7 +14,7 @@ This is the repo for <https://ethsunshine.com>, a site to monitor the health of 
 - [Adding a New Metric](#adding-a-new-metric)
 	- [Metric Outline](#metric-outline)
 	- [Metric Integration](#metric-integration)
-	- [Modal Content](#modal-content)
+	- [Metric Modal Content](#metric-modal-content)
 - [Development](#development)
 	- [Local Development](#local-development)
 	- [Pull Requests](#pull-requests)
@@ -36,7 +36,7 @@ The purpose of Project Sunshine is to identify centralization vectors, determine
 
 ### Contributing
 
-Project Sunshine is always welcoming community input! Below are some ways to help out with the project, [join us on Discord to collaborate](https://discord.gg/zE8guNfG49)!
+Project Sunshine welcomes contributors! Below are some ways to help out with the project, [join us on Discord to collaborate](https://discord.gg/zE8guNfG49)!
 
 - Determining centralization vectors
 - Determing metrics to monitor these vectors 
@@ -90,7 +90,7 @@ This list contains centralization vectors that pose a risk to the health of the 
 	- If the data fails to load, the `default_value` specified in `metrics.yml` will be used as a fallback (will be updated periodically to remain relevant).
 
 
-### Modal Content
+### Metric Modal Content
 
 1. Modal content is kept in `_modal_content`.
 1. The modal content should follow `_modal_content/template.md` and list:
