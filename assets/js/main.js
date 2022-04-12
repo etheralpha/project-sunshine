@@ -33,17 +33,26 @@ let cloudMaxPercent = overallGoal;
 
 
 function load() {
-  // loop through the enabled metrics, fetch updated values, and replace the default (fallback) values
-  for (let metric in metrics) {
-    if (!metrics[metric]["disabled"]) {
-      let metricId = metrics[metric]["id"];
-      let dataSource = getDataSource(metricId);
-      let defaultValue = metrics[metric]["default_value"];
-      getData(metricId, dataSource, defaultValue).then(updateProgressBar);
+  checkDarkMode();
+  // try catch is used to determine if current page is the dashboard or not
+  try {
+    // loop through the enabled metrics, fetch updated values, and replace the default (fallback) values
+    for (let metric in metrics) {
+      if (!metrics[metric]["disabled"]) {
+        let metricId = metrics[metric]["id"];
+        let dataSource = getDataSource(metricId);
+        let defaultValue = metrics[metric]["default_value"];
+        getData(metricId, dataSource, defaultValue).then(updateProgressBar);
+      }
     }
+    // calculate health level, set the sunniness, and show the health level; runs only on load
+    getHealthLevel().then(setSun).then(setHealthLevel);
   }
-  // calculate health level, set the sunniness, and show the health level; runs only on load
-  getHealthLevel().then(setSun).then(setHealthLevel);
+  // execute if on a page other than the dashboard
+  catch {
+    let percent = localStorage.getItem("healthLevel") || 50;
+    setSun(percent);
+  }
 }
 window.onload = load();
 
@@ -164,6 +173,7 @@ async function getHealthLevel() {
   // calculate the sunniness percentage
   let percent = (accumulatedValue / totalSize) + 20;
   console.log(`The sunniness (decentralization health) level is ${Math.round(percent * 100) / 100}%`)
+  localStorage.setItem("healthLevel", percent);
 
   return percent;
 }
@@ -260,4 +270,41 @@ function showLoadingBar(metricId, show) {
     progressBarParent.firstElementChild.classList.remove("placeholder");
   }
 }
+
+
+// check if dark mode is set
+function checkDarkMode() {
+  let darkModeEnabled = localStorage.getItem("darkModeEnabled");
+  if (darkModeEnabled === null) {
+    let matched = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if(matched) {
+      setDarkMode("true");
+    } else {
+      setDarkMode("false")
+    }
+  } else {
+    setDarkMode(darkModeEnabled);
+  }
+}
+
+
+// toggle dark mode theme
+function setDarkMode(enabled) {
+  document.getElementById("enableDarkMode").classList.add("d-none");
+  document.getElementById("disableDarkMode").classList.add("d-none");
+  var root = document.getElementsByTagName("html")[0];
+  if (enabled == "true") {
+    console.log("Dark Mode enabled");
+    root.classList.add("dark-mode");
+    document.getElementById("disableDarkMode").classList.remove("d-none");
+    localStorage.setItem("darkModeEnabled", "true");
+  } else if (enabled == "false") {
+    console.log("Dark Mode disabled");
+    root.classList.remove("dark-mode");
+    document.getElementById("enableDarkMode").classList.remove("d-none");
+    localStorage.setItem("darkModeEnabled", "false");
+  }
+}
+
+
 
