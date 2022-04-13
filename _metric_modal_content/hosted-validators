@@ -1,0 +1,19 @@
+## Non-Hosted Validators
+---
+
+# What is this metric?
+
+Non-Hosted Validators tracks the breakdown of validators operated at home vs a data center. The value of this metric is the percentage of validators not operated out of a data center (aka non-hosted).
+
+# Why is it important?
+
+Nodes that rely on cloud hosted services create a single point of failure or attack that can affect many nodes at once. Interrupted service to a single hosting site can stop otherwise functional validators, threatening finality of the network. A concentration of nodes running on one cloud hosting service creates an easy target for malicious actors to attack, takeover, or disrupt the network.
+
+# How do we improve it?
+
+- **Community** - Spread awareness and help educate others about the importance of non-cloud hosted nodes to the decentralization of the Ethereum network. 
+- **Solo Stakers** - Switch to a non-cloud hosted node. If a hosted node is preferred, switch to a minority cloud hosting service.
+- **Pool Stakers** - Switch to a governance entity that does not use cloud hosted nodes. Deposit future ETH into a governance entity that does not use cloud hosted nodes. Write to your current governance entity to express concerns about the security risks of using cloud hosted nodes.
+- **Governance Entities** - Use non-cloud hosted nodes when possible. If cloud hosted notes are preferred, look to maintain a reasonable ratio of cloud to non-cloud hosted nodes. Use multiple cloud hosting services instead of relying on one.
+
+# Resources
