@@ -1,4 +1,4 @@
-## Execution Client Diversity
+---
 ---
 
 # What is this metric?
