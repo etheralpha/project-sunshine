@@ -1,4 +1,4 @@
-## Non-Hosted Validators
+---
 ---
 
 # What is this metric?
