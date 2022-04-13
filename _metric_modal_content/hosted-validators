@@ -11,9 +11,9 @@ Nodes that rely on cloud hosted services create a single point of failure or att
 
 # How do we improve it?
 
-- **Community** - Spread awareness and help educate others about the importance of non-cloud hosted nodes to the decentralization of the Ethereum network. 
-- **Solo Stakers** - Switch to a non-cloud hosted node. If a hosted node is preferred, switch to a minority cloud hosting service.
-- **Pool Stakers** - Switch to a governance entity that does not use cloud hosted nodes. Deposit future ETH into a governance entity that does not use cloud hosted nodes. Write to your current governance entity to express concerns about the security risks of using cloud hosted nodes.
-- **Governance Entities** - Use non-cloud hosted nodes when possible. If cloud hosted notes are preferred, look to maintain a reasonable ratio of cloud to non-cloud hosted nodes. Use multiple cloud hosting services instead of relying on one.
+- **Individuals** - Spread awareness and help educate others about the importance of non-cloud hosted nodes to the decentralization of the Ethereum network. 
+- **Solo Stakers** - Switch to non-cloud hosted nodes and use tools like Eth-Docker or Rocket Pool that make it easy to setup and manage your node. 
+- **Pool Stakers** - Continually improve accessibility for stakers to self host a node.
+- **Governance Entities** - Support projects that are making self-hosting easier.
 
 # Resources
