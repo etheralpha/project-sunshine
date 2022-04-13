@@ -1,4 +1,4 @@
-## Consensus Client Diversity
+---
 ---
 
 # What is this metric?
