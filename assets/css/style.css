@@ -21,7 +21,6 @@ body {
   top: 0;
   background-image: radial-gradient(closest-side at 55% 50%, rgba(255,165,0,1), rgba(255,255,0,0.8), transparent);
   transform: translate(-85%, -85%);
-  transition: 3s ease;
 }
 #clouds {
   position: absolute;
@@ -30,7 +29,6 @@ body {
   left: 0;
   top: 0;
   background-color: rgba(153,153,153,0.7);
-  transition: 3s ease;
 }
 nav,
 header,
@@ -130,6 +128,13 @@ footer {
 
 
 
+.tooltip .tooltip-inner,
+.tooltip .tooltip-arrow {
+  opacity: 0.9;
+}
+
+
+
 .card {
   position: relative;
   border-radius: 0.6rem;
@@ -172,7 +177,6 @@ select {
   margin-top: -5px;
   background-color: var(--trans-white-light) !important;
   border-radius: var(--radius-sm) !important;
-  /*border-color: rgba(190, 190, 190, 0.5) !important;  */
   border-color: rgb(184 187 223 / 50%) !important;
 }
 select:disabled {
@@ -211,7 +215,7 @@ select:disabled {
 
 .progress-label {
   margin-bottom: 0.25rem;
-  margin-top: 0.45rem;
+  /*margin-top: 0.45rem;*/
 }
 .progress {
   background-color: rgba(255,255,255,0.5);

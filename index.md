@@ -59,7 +59,7 @@ layout: default
           <div id="card-{{metric.id}}" class="card h-100 bg-eth placeholder-glow" {{opacity}}>
             {%- if metric.disabled -%}
               <div class="card-disabled">
-                <p class="coming-soon">integration in progress...</p>
+                <p class="coming-soon">help us add this metric!</p>
               </div>
             {%- endif -%}
             <!-- Card Body -->
@@ -88,7 +88,7 @@ layout: default
                         {%- endfor -%}
                       </select>
                       <label for="select-{{metric.id}}">Select Data Source</label>
-                    {%- else -%}
+                    {%- elsif metric.data_sources.size == 1 -%}
                       <select id="select-{{metric.id}}" class="form-select form-select-sm" aria-label="disabled data source select" disabled>
                         {%- for source in metric.data_sources -%}
                           <option value="{{source}}" selected>{{source | split: "-" | first}}</option>
@@ -101,41 +101,76 @@ layout: default
               </div>
               <div class="mb-2 {{placeholder}}">
                 <!-- Details -->
-                <label class="progress-label fw-normal small">
-                  Danger: < {{metric.danger_value}}%
-                  <span class="mx-1 mx-xl-2">|</span>
-                  Goal: {{metric.goal_value}}% +
-                  {%- if metric.target_value -%}
-                    <span class="mx-1 mx-xl-2">|</span>
-                    Target: {{metric.target_value}}%
+                {%- assign max_value = "100" -%}
+                {%- assign percent = "%" -%}
+                {%- if metric.max_value -%}
+                  {%- assign max_value = metric.max_value | times: 1.0000 -%}
+                  {%- assign percent = "" -%}
+                {%- endif -%}
+                {%- if metric.target_value -%}
+                  <label class="progress-label fw-normal small">
+                    Target: {{metric.target_value}}{{percent}}
                     {%- if metric.target_date -%}
                       <span class="d-none d-xl-inline ms-1">by {{metric.target_date}}</span>
                     {%- endif -%}
-                  {%- endif -%}
-                </label>
+                  </label>
+                {%- endif -%}
                 <!-- Progress Bar -->
-                <div class="progress position-relative {{hide}}" style="height: 1.1rem;">
-                  {%- assign color = "warning" -%}
-                  {%- if metric.default_value < metric.danger_value -%}
-                    {%- assign color = "danger" -%}
-                  {%- endif -%}
-                  {%- if metric.default_value > metric.goal_value -%}
-                    {%- assign color = "success" -%}
-                  {%- endif -%}
+                {%- assign color = "warning" -%}
+                {%- assign status = "caution" -%}
+                {%- if metric.default_value < metric.danger_value -%}
+                  {%- assign color = "danger" -%}
+                  {%- assign status = "danger!" -%}
+                {%- endif -%}
+                {%- if metric.default_value > metric.goal_value -%}
+                  {%- assign color = "success" -%}
+                  {%- assign status = "great!" -%}
+                {%- endif -%}
+                <div id="progress-container-{{metric.id}}" class="progress position-relative {{hide}}" style="height: 1.1rem;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true"
+                  title='
+                    <div class="progress-tooltip text-capitalize text-start">
+                      <div class="mb-1 pb-1 text-center border-bottom border-secondary">
+                        status:<br>{{metric.default_value}}{{percent}} ({{status}})
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <span class="me-2">danger:</span><span>0-{{metric.danger_value}}{{percent}}</span>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        <span class="me-2">caution:</span><span>{{metric.danger_value}}-{{metric.goal_value}}{{percent}}</span>
+                      </div>
+                      <div class="d-flex justify-content-between">
+                        {%- if metric.max_value -%}
+                          <span class="me-2">great:</span><span>{{metric.goal_value}}-{{max_value | round}}+</span>
+                        {%- else -%}
+                          <span class="me-2">great:</span><span>{{metric.goal_value}}-{{max_value | round}}</span>
+                        {%- endif -%}
+                      </div>
+                    </div>'>
                   <div id="progress-{{metric.id}}">
+                    {%- assign current_value = metric.default_value -%}
+                    {%- assign value_width = metric.default_value -%}
+                    {%- if metric.max_value -%}
+                      {%- assign value_width = metric.default_value | divided_by: max_value | times: 100 -%}
+                    {%- endif -%}
                     <div class="progress-bar position-absolute bg-{{color}}" role="progressbar" 
-                        aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{metric.default_value}}" 
-                        style="width: {{metric.default_value}}%; height: 1.1rem;">
-                      {{metric.default_value}}%
+                        aria-valuemin="0" aria-valuemax="{{max_value}}" aria-valuenow="{{metric.default_value}}" 
+                        style="width: {{value_width}}%; height: 1.1rem;">
+                      {{current_value}}
                     </div>
                   </div>
                   {%- assign red_width = metric.danger_value -%}
+                  {%- assign yellow_width = metric.goal_value | minus: metric.danger_value -%}
+                  {%- assign green_width = 100 | minus: metric.danger_value | minus: yellow_width -%}
+                  {%- if metric.max_value -%}
+                    {%- assign red_width = metric.danger_value | divided_by: max_value | times: 100 -%}
+                    {%- assign caution_value = metric.goal_value | minus: metric.danger_value -%}
+                    {%- assign yellow_width = caution_value | divided_by: max_value | times: 100 -%}
+                    {%- assign green_width = 100 | minus: red_width | minus: yellow_width -%}
+                  {%- endif -%}
                   <div class="progress-bar bg-trans progress-danger" role="progressbar" 
                     style="width: {{red_width}}%; height: 1.1rem"></div>
-                  {%- assign yellow_width = metric.goal_value | minus: metric.danger_value -%}
                   <div class="progress-bar bg-trans progress-warning" role="progressbar" 
                     style="width: {{yellow_width}}%; height: 1.1rem"></div>
-                  {%- assign green_width = 100 | minus: metric.danger_value | minus: yellow_width -%}
                   <div class="progress-bar bg-trans progress-success" role="progressbar" 
                     style="width: {{green_width}}%; height: 1.1rem"></div>
                 </div>
@@ -167,9 +202,9 @@ layout: default
           </div>
           <div class="modal-body">
             {%- assign post_name = metric.id  -%}
-            {%- assign modal_content = site.metric_modal_content | where: 'slug', post_name | first -%}
+            {%- assign modal_content = site.modal_content | where: 'slug', post_name | first -%}
             {%- if modal_content == null -%}
-              {%- assign modal_content = site.info_modal_content | where: 'slug', "contribute" | first -%}
+              {%- assign modal_content = site.modal_content | where: 'slug', "contribute" | first -%}
             {%- endif -%}
             {{ modal_content.output }}
           </div>

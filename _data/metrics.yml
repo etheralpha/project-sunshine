@@ -1,14 +1,15 @@
 # - title:             # metric title; this will be shown as the card heading
 #   id:                # metric id, no spaces; THIS MUST NOT CHANGE as it's used to id elements
+#   category:          # (not used yet) which category to bucket the metric into
 #   disabled:          # true/false; true = disables the metric card; false = card functions normally
 #   modal_enabled:     # true/false; true = show tooltip icon; false = hide tooltip option
 #   tooltip_enabled:   # true/false; true = enable info modal; false = disable info modal
 #   tooltip_text:      # short description of the metric
-#   default_value:     # a fallback value to use
-#   goal_value:        # the upper bound of what's deemed an ideal safe level
-#   danger_value:      # the lower bound of what's deemed a critical level
-#   target_value:      # (optional) near term goal to try and reach
-#   target_date:       # (optional) date to reach the near term target
+#   default_value:     # a fallback value to use; manually updated periodically to remain relevant
+#   danger_value:      # the upper bound of the red region, what's deemed a critical level
+#   goal_value:        # the lower bound of the green region, what's deemed an ideal level
+#   target_value:      # (optional) near term value to try and reach
+#   target_date:       # (optional) date to reach the near term target_value
 #   influence:         # the influence/weight in relation to other metrics when calculating how sunny it is
 #   data_sources:      # different sources to populate data from; first listed is the default
 #     -                # array of data sources; netlify function MUST have same name; all lowercase, no spaces;
@@ -22,8 +23,8 @@
 #   tooltip_enabled: false
 #   tooltip_text: 
 #   default_value: 
-#   goal_value: 
 #   danger_value: 
+#   goal_value: 
 #   target_value: 
 #   target_date: 
 #   influence: 1
@@ -32,44 +33,72 @@
 
 
 - title: Consensus Client Diversity
-  id: consensus-clients
+  id: consensus-diversity
   disabled: false
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows percent marketshare of the minority consensus clients.
-  default_value: 43.67
-  goal_value: 67
+  default_value: 48.4
   danger_value: 34
+  goal_value: 67
   target_value: 55
   target_date: Jun 2022
   influence: 1
   data_sources: 
-    - migalabs-consensus-clients
-    - blockprint-consensus-clients
-    - nodewatch-consensus-clients
+    - blockprint-consensus-diversity
+    - migalabs-consensus-diversity
+    - nodewatch-consensus-diversity
 - title: Execution Client Diversity
-  id: execution-clients
+  id: execution-diversity
   disabled: false
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows percent marketshare of the minority execution clients.
-  default_value: 16.06
-  goal_value: 67
+  default_value: 18.08
   danger_value: 34
+  goal_value: 67
   target_value: 30
   target_date: 
   influence: 1
   data_sources: 
-    - ethernodes-execution-clients
+    - ethernodes-execution-diversity
+- title: Consensus Client Count
+  id: consensus-clients
+  disabled: false
+  modal_enabled: true
+  tooltip_enabled: true
+  tooltip_text: This metric shows the number of different consensus clients available.
+  default_value: 5
+  danger_value: 2
+  goal_value: 4
+  max_value: 5
+  target_value: 
+  target_date: 
+  influence: 1
+  data_sources: 
+- title: Execution Client Count
+  id: execution-clients
+  disabled: false
+  modal_enabled: true
+  tooltip_enabled: true
+  tooltip_text: This metric shows the number of different execution clients available.
+  default_value: 5
+  danger_value: 2
+  goal_value: 4
+  max_value: 5
+  target_value: 
+  target_date: 
+  influence: 1
+  data_sources: 
 - title: Non-Hosted Validators
   id: hosted-validators
   disabled: false
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows percent marketshare of nodes not operating out of data centers.
-  default_value: 41.41
-  goal_value: 60
+  default_value: 41.18
   danger_value: 30
+  goal_value: 60
   target_value: 50
   target_date: 
   influence: 1
@@ -81,23 +110,36 @@
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows the percent marketshare of validators not operating in the country with the highest validator count (i.e. 100% - [% of validators in a single country]).
-  default_value: 69.46
-  goal_value: 66
+  default_value: 50.47
   danger_value: 33
+  goal_value: 66
   target_value: 
   target_date: 
   influence: 1
   data_sources: 
     - nodewatch-geolocation
-- title: Non-Staking Pool Stake Weight
-  id: staking-pools
+- title: Staking Pool Diversity
+  id: pool-diversity
   disabled: true
-  modal_enabled: false
+  modal_enabled: true
+  tooltip_enabled: true
+  tooltip_text: This metric shows percent marketshare of staking pool validators not operated by the top pool.
+  default_value: 50
+  danger_value: 30
+  goal_value: 70
+  target_value: 50
+  target_date: 
+  influence: 1
+  data_sources: 
+- title: Non-Pool Validators
+  id: pool-validators
+  disabled: true
+  modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows percent marketshare of validators not operated by pools.
-  default_value: 41.8
-  goal_value: 60
-  danger_value: 40
+  default_value: 50
+  danger_value: 30
+  goal_value: 70
   target_value: 50
   target_date: 
   influence: 1
@@ -108,9 +150,9 @@
   modal_enabled: false
   tooltip_enabled: true
   tooltip_text: This metric shows percent marketshare of validators operated by a single government entity (either nation-state or DAO).
-  default_value: 4
-  goal_value: 5
-  danger_value: 20
+  default_value: 50
+  danger_value: 30
+  goal_value: 70
   target_value: 5
   target_date: 
   influence: 1
@@ -121,9 +163,9 @@
   modal_enabled: false
   tooltip_enabled: true
   tooltip_text: This metric shows percent marketshare of validators operated by a single entity.
-  default_value: 4
-  goal_value: 5
-  danger_value: 20
+  default_value: 50
+  danger_value: 30
+  goal_value: 70
   target_value: 5
   target_date: 
   influence: 1
