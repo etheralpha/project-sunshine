@@ -41,8 +41,11 @@ function load() {
       if (!metrics[metric]["disabled"]) {
         let metricId = metrics[metric]["id"];
         let dataSource = getDataSource(metricId);
-        let defaultValue = metrics[metric]["default_value"];
-        getData(metricId, dataSource, defaultValue).then(updateProgressBar);
+        // check if dataSource to account for static metrics
+        if (dataSource) {
+          let defaultValue = metrics[metric]["default_value"];
+          getData(metricId, dataSource, defaultValue).then(updateProgressBar);
+        }
       }
     }
     // calculate health level, set the sunniness, and show the health level; runs only on load
@@ -61,7 +64,8 @@ window.onload = load();
 function getDataSource(metricId) {
   let id = "select-" + metricId;
   let select = document.getElementById(id);
-  let dataSource = select.value;
+  // account for when theres no dropdown select
+  let dataSource = (select == null) ? false : select.value;
   return dataSource;
 }
 
@@ -104,7 +108,7 @@ function updateProgressBar(data) {
   // data = [metricId, metricValue]
   let metricId = data[0];
   let metricValue = Math.round(data[1] * 100) / 100;
-  let goalValue, dangerValue, color;
+  let goalValue, dangerValue, color, status;
   for (let metric in metrics) {
     if (metrics[metric]["id"] == metricId) {
       goalValue = metrics[metric]["goal_value"];
@@ -112,16 +116,19 @@ function updateProgressBar(data) {
     }
   }
 
-  // set the color
+  // set the color and status
   if (metricValue < dangerValue) {
     color = "danger";
+    status = "danger!";
   } else if (metricValue > goalValue) {
     color = "success";
+    status = "great!";
   } else {
     color = "warning";
+    status = "caution";
   }
 
-  // build and update the html
+  // build and update the progress bar html
   let progressBarParent = document.getElementById("progress-" + metricId);
   let progressBar = `<div class="progress-bar position-absolute bg-${color}" role="progressbar" 
     aria-valuemin="0" aria-valuemax="100" aria-valuenow="${metricValue}" 
@@ -129,6 +136,25 @@ function updateProgressBar(data) {
     ${metricValue}%
   </div>`;
   progressBarParent.innerHTML = progressBar;
+
+  // build and update the tooltip html
+  let progressBarContainer = document.getElementById("progress-container-" + metricId);
+  let tooltipContent =`
+      <div class="progress-tooltip text-capitalize text-start">
+        <div class="mb-1 pb-1 text-center border-bottom border-secondary">
+          status:<br>${metricValue}% (${status})
+        </div>
+        <div class="d-flex justify-content-between">
+          <span class="me-2">danger:</span><span>0-${dangerValue}%</span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span class="me-2">caution:</span><span>${dangerValue}-${goalValue}%</span>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span class="me-2">great:</span><span>${goalValue}-100%</span>
+        </div>
+      </div>`;
+  progressBarContainer.setAttribute("data-bs-original-title", tooltipContent);
 
   // hide the progress bar loading indicator
   showLoadingBar(metricId, false);
@@ -147,11 +173,17 @@ async function getHealthLevel() {
   // loop through the enabled metrics
   const enabledMetrics = metrics.filter(function (metric) { return metric.disabled === false; });
   enabledMetrics.map(metric => {
-    let select = document.getElementById("select-" + metric["id"]);
-    let dataSource = select.value;
+    let metricId = metric["id"];
+    let dataSource = getDataSource(metricId);
+    // metric[dataSource] outputs undefined even though it has a value when printing metric
+    // if (metric["id"] == "consensus-diversity") {
+    //   console.log(metric);
+    //   console.log(metric[dataSource]);
+    // }
     let metricValue = metric[dataSource] || metric["default_value"];
+    let maxValue = metric["max_value"] || 100;
 
-    // calculate the percentage the metric is within it''s current range and then get the standardized percentage
+    // calculate the percentage the metric is within it's current range and then get the standardized percentage
     let metricPercent;
     let standardPercent;
     if (metricValue < metric["danger_value"]) {
@@ -161,7 +193,7 @@ async function getHealthLevel() {
       metricPercent = metricValue / metric["goal_value"] * standardizedGoal;
       standardPercent = metricPercent * standardizedGoal;
     } else {
-      metricPercent = metricValue / 100;
+      metricPercent = metricValue / maxValue ;
       standardPercent = metricPercent * 100;
     }
 
@@ -171,7 +203,7 @@ async function getHealthLevel() {
   })
 
   // calculate the sunniness percentage
-  let percent = (accumulatedValue / totalSize) + 20;
+  let percent = (accumulatedValue / totalSize) + 0;
   console.log(`The sunniness (decentralization health) level is ${Math.round(percent * 100) / 100}%`)
   localStorage.setItem("healthLevel", percent);
 
@@ -204,6 +236,7 @@ async function setSun(percent) {
   // update sun element
   let sun = document.getElementById('sun');
   let translate = "translate(" + sunFinalX + "%, " + sunFinalY + "%)";
+  sun.style.transition = "3s ease";
   sun.style.transform = translate;
 
   // convert the percent into decimal value with weight added
@@ -221,6 +254,7 @@ async function setSun(percent) {
   // update cloud element
   let clouds = document.getElementById('clouds');
   let color = "rgba(153,153,153," + cloudFinal + ")";
+  clouds.style.transition = "3s ease";
   clouds.style.background = color;
 
   return percent;

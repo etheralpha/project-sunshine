@@ -1,13 +1,16 @@
 ---
 ---
 
+
 # What is this metric?
 
 Non-Pool Validators tracks the number of validators that are operated by staking pool services. The value of this metric is the percent market share of validators not operated by a staking pool.
 
+
 # Why is it important?
 
 One (or a small group of) staking pools controlling the majority of staked ETH weakens the decentralization of the network. This presents a security issue where an otherwise one-off issue gets spread unto the majority of the network. Staking pools also create a single point of failure for bad actors, internal or external, to target and disrupt the network. 
+
 
 # How do we improve it?
 
@@ -17,4 +20,8 @@ One (or a small group of) staking pools controlling the majority of staked ETH w
 - **DAOs** - Support projects and research that aim to decentralize staking pools. 
 - **DeFi Teams** - Integrate your platform with decentralized staking projects to grow and incentivize the decentralized network effects.
 
+
 # Resources
+
+{%- include partials/contribute-cta.html -%}
+

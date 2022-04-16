@@ -42,24 +42,32 @@ Thanks to community efforts, many are now aware that client diversity is a key s
 
 The purpose of Project Sunshine is to identify centralization vectors, determine the metrics to monitor, set danger/goal/target values for each, and then work with the community to meet those targets. 
 
+
 ### Goals and Targets
 
 Each decentralization category is visualized on a spectrum showing red (danger), yellow (caution), and green (good). At this time the gradient is subjective, but is intended to convey the need for action and risk to the network. Our ultimate goal is to develop evaluations that are less subjective and more empirical.
 
 ![Project Sunshine](https://i.ibb.co/SRp3YB1/sunshine-screenshot.png)
 
+
+### Overall Health
+
+The Overall Health is calculated by taking health of each individual metric and relative rating system and standardizing it against a global rating system. Those values are then averaged by weight of importance (currently all are equal) to obtain the Overall Health value.
+
+
 ### History
 
-The roots of Project Sunshine are based in the willingness of the Ethereum Community's desire to examine existing practice and harden the network through data-driven action. The first realizations regarding the need for decisive action around decentralization came in 2021 when the Prysm beacon chain implementation controlled 70%+ of the validators in a chain architecture that was designed to be multi-client. [Superphiz pushed the community to work toward greater decentrlalization](https://twitter.com/superphiz/status/1437846604707401733) and [hanni_abu](https://twitter.com/hanni_abu) responded by developing [clientdiversity.org](https://clientdiversity.org). A few months later, realizing the need to zoom out from client diversity and focus on ecosystem decentralization, superphiz imagined [project sunshine](https://twitter.com/superphiz/status/1508568072118063109) and Hanni responded to the call by assembling a team in the Ether Alpha discord and beginning work.
+The roots of Project Sunshine are based in the willingness of the Ethereum Community's desire to examine existing practice and harden the network through data-driven action. The first realizations regarding the need for decisive action around decentralization came in 2021 when the Prysm beacon chain implementation controlled 70%+ of the validators in a chain architecture that was designed to be multi-client. [Superphiz pushed the community to work toward greater decentrlalization](https://twitter.com/superphiz/status/1437846604707401733) and [hanni_abu](https://twitter.com/hanni_abu) responded by developing [clientdiversity.org](https://clientdiversity.org). A few months later, realizing the need to zoom out from client diversity and focus on ecosystem decentralization, superphiz imagined [project sunshine](https://twitter.com/superphiz/status/1508568072118063109) and Hanni responded to the call by assembling a team in the Ether Alpha Discord and beginning work.
+
 
 ### Future
 
-Project sunshine seeks to be a community driven decentralization dashboard to support continual hardening of the the Ethereum network. We actively seek to include third party data sources and contributors to site development. Project Sunshine is teaming up with [GitPOAP](https://gitpoap.io) to recognize and reward contributors who make this dashboard possible.
+Project Sunshine seeks to be a community driven decentralization dashboard to support continual hardening of the the Ethereum network. We actively seek to include third party data sources and contributors to site development. Project Sunshine is teaming up with [GitPOAP](https://gitpoap.io) to recognize and reward contributors who make this dashboard possible.
 
 
 ### Contributing
 
-Project Sunshine welcomes contributors! Below are some ways to help out with the project, [join us on Discord to collaborate](https://discord.gg/zE8guNfG49)!
+Project Sunshine welcomes contributors! Below are some ways to help out with the project, [join us on Discord to collaborate](https://discord.gg/zE8guNfG49)! See [Development](#development) for more info (**branch off the `dev` branch to make your changes**).
 
 - Determining centralization vectors
 - Determing metrics to monitor these vectors 
@@ -79,10 +87,13 @@ This list contains centralization vectors that pose a risk to the health of the 
 
 - [x] Consensus Client Diversity
 - [x] Execution Client Diversity
-- [ ] Data Center Validators (Hosted versus Non-Hosted)
+- [x] Consensus Client Count
+- [x] Execution Client Count
+- [x] Data Center Validators (Hosted versus Non-Hosted)
+- [x] Geolocation Diversity
 - [ ] Government Entity Stake Weight
 - [ ] Largest Entity Stake Weight 
-- [ ] Geolocation Diversity
+- [ ] *What else would you like to see?*
 
 
 ---
@@ -115,8 +126,8 @@ This list contains centralization vectors that pose a risk to the health of the 
 
 ### Metric Modal Content
 
-1. Modal content is kept in `_metric_modal_content`.
-1. The modal content should follow `_metric_modal_content/template.md` and list:
+1. Modal content is kept in `_modal_content`.
+1. The modal content should follow `_modal_content/template.md` and list:
 	- What is this metric?
 	- Why is it important?
 	- How do we improve it?
@@ -141,7 +152,7 @@ This project uses Jekyll and Netlify Functions.
 	- Note: Use Node v16 (Netlify has issues with Node v17)
 1. Install Netlify CLI: `npm install netlify-cli -g`
 1. Authenticate Netlify account: `netlify login`
-1. Branch off the `dev` branch to make your changes 
+1. **Branch off the `dev` branch to make your changes**
 1. Start the local server: `netlify dev`
 1. The local server should open automatically
 1. Once your changes are made, submit a PR back to the `dev` branch

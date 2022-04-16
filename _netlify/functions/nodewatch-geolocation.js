@@ -49,7 +49,7 @@ exports.handler = async (event, context) => {
           query
         })
       }).then( response => response.json() );
-      const metricValue = getMetricValue(response, 1);
+      const metricValue = getMetricValue(response, 2);
       // console.log({"nodewatch-geolocation_response": response});
       console.log({"dataSource":"nodewatch-geolocation","metricValue":metricValue});
       return metricValue;
