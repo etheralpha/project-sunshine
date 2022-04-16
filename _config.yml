@@ -1,0 +1,18 @@
+# Read about configuration here: https://jekyllrb.com/docs/configuration/options/
+title: Project Sunshine | Ethereum
+description: A dashboard to monitor the health of Ethereum's decentralization.
+keywords: ethereum, decentralization, client, diversity, eth, project, sunshine, beacon, chain
+url: https://ethsunshine.com
+permalink: pretty # Do not change this, it will break all links
+timezone: America/New_York
+markdown: kramdown
+livereload: true
+
+# Navigation
+nav_enabled: true
+
+# Links
+github_repo: https://github.com/etheralpha/project-sunshine
+
+collections:
+  - modal_content

@@ -1,0 +1,24 @@
+{
+  "name": "project-sunshine",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "This is the source code for <https://ethsunshine.com>, a dashboard to measure the health of Ethereum's decentralization.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etheralpha/project-sunshine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/etheralpha/project-sunshine/issues"
+  },
+  "homepage": "https://github.com/etheralpha/project-sunshine#readme",
+  "dependencies": {
+    "netlify": "^11.0.0",
+    "node-fetch": "~1.0.2"
+  }
+}

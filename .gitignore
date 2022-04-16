@@ -1,0 +1,12 @@
+*~
+_site
+_site/
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+.netlify
+vendor
+.netlify
+.DS_Store
+*.DS_Store
+**/.DS_Store
