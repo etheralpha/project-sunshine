@@ -381,5 +381,9 @@ select:disabled {
 .dark-mode .modal-footer {
   border-color: rgb(162 170 188 / 20%) !important;
 }
+.dark-mode .modal-header .btn-close {
+  background-color: rgb(162 170 188 / 80%) !important;
+  margin-right: 0;
+}
 
 
