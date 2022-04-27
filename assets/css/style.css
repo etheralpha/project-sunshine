@@ -183,6 +183,10 @@ select:disabled {
   background-color: rgba(255,255,255,0.1) !important;
   color: rgba(0,0,0,0.5);
 }
+.form-select {
+  background-position: right 0.5rem center;
+  padding-right: 0
+}
 .form-floating>.form-control:focus~label,
 .form-floating>.form-control:not(:placeholder-shown)~label,
 .form-floating>.form-select~label {
@@ -380,6 +384,10 @@ select:disabled {
 .dark-mode .modal-header,
 .dark-mode .modal-footer {
   border-color: rgb(162 170 188 / 20%) !important;
+}
+.dark-mode .modal-header .btn-close {
+  background-color: rgb(162 170 188 / 80%) !important;
+  margin-right: 0;
 }
 
 
