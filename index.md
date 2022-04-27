@@ -176,9 +176,14 @@ layout: default
                 </div>
               </div>
               <!-- Buttons -->
-              <div class="card-buttons text-start">
+              <div class="card-buttons d-flex justify-content-between">
                 {%- if metric.modal_enabled -%}
                   <a class="btn btn-sunshine text-dark btn-sm {{hide}}" data-bs-toggle="modal" data-bs-target="#modal-{{metric.id}}">Take Action!</a>
+                {%- endif -%}
+                {%- if metric.disabled == false -%}
+                  <a class="tweet-link text-decoration-none mt-1 me-1" onclick="createTweet('{{metric.id}}')">
+                    {{site.data.icons.twitter}}
+                  </a>
                 {%- endif -%}
               </div>
             </div>

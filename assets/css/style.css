@@ -252,6 +252,12 @@ select:disabled {
 
 
 
+.tweet-link svg {
+  opacity: 0.8;
+}
+
+
+
 .placeholder,
 .placeholder:hover {
   cursor: default;
