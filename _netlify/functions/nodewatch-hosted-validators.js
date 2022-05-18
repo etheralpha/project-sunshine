@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-const API_ENDPOINT = 'https://api.nodewatch.io/query';
+const API_ENDPOINT = 'https://nodewatch.chainsafe.io/query';
 let data;
 let lastUpdate = 0;
 
