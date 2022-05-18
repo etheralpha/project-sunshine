@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-const API_ENDPOINT_ENTITIES = 'https://frontend-git-feature-network-pen-rated-network.vercel.app/api/v0/entities?window=AllTime&from=0&size=100';
-const API_ENDPOINT_OPERATORS = 'https://frontend-git-feature-network-pen-rated-network.vercel.app/api/v0/operators?window=AllTime&from=0&size=100';
+const API_ENDPOINT_ENTITIES = 'https://api.rated.network/v0/eth/operators?window=all&idType=entity&size=100';
+const API_ENDPOINT_OPERATORS = 'https://api.rated.network/v0/eth/operators?window=all&idType=depositAddress&size=100';
 let data;
 let lastUpdate = 0;
 

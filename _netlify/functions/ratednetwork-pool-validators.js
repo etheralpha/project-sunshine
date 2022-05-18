@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-const API_ENDPOINT = 'https://frontend-git-feature-network-pen-rated-network.vercel.app/api/v0/entities?window=AllTime&from=0&size=100';
+const API_ENDPOINT = 'https://api.rated.network/v0/eth/operators?window=all&idType=entity&size=100';
 let data;
 let lastUpdate = 0;
 let stakingEntities = [
@@ -79,7 +79,7 @@ exports.handler = async (event, context) => {
   const fetchData = async () => {
     try {
       let response = await fetch(API_ENDPOINT).then( response => response.json() );
-      response = response["data"].filter( i => stakingEntities.includes( i.entity ) );
+      response = response["data"].filter( i => stakingEntities.includes( i.id ) );
       const metricValue = getMetricValue(response, -1);
       console.log({"dataSource":"ratednetwork-pool-validators","metricValue":metricValue});
       return metricValue;
