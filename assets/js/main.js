@@ -92,7 +92,12 @@ async function getData(metricId, dataSource, defaultValue) {
         fetch(url)
       ]);
       const response = await data.json();
-      metricValue = Number(response);
+      // console.log({"metricId":metricId,"response":response});
+      if (isNumber(response)) {
+        metricValue = Number(response);
+      } else {
+        console.error(`ERROR: Unexpected response for ${metricId}`);
+      }
       // cache the response in the metric object for later use
       metric[dataSource] = metricValue;
       metric["current_value"] = metricValue;
@@ -104,6 +109,11 @@ async function getData(metricId, dataSource, defaultValue) {
 
   // console.log({"metricId":metricId,"dataSource":dataSource,"defaultValue":defaultValue,"metricValue":metricValue});
   return [metricId, metricValue];
+}
+
+
+function isNumber(val) { 
+  return !isNaN(parseFloat(val)) && !isNaN(val - 0);
 }
 
 
