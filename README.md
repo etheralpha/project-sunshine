@@ -6,9 +6,8 @@ Bringing the light of decentralization to the darkness of centraliztion: a site 
 
 <https://ethsunshine.com>
 
-|Discord Server|
+|[Join Discord](https://discord.gg/jeDvQc2rSX)|
 |:---:|
-|![Discord Shield](https://discordapp.com/api/guilds/825089839309389864/widget.png?style=shield)|
 
 **Table of Contents**
 - [Intro](#intro)
@@ -67,7 +66,7 @@ Project Sunshine seeks to be a community driven decentralization dashboard to su
 
 ### Contributing
 
-Project Sunshine welcomes contributors! Below are some ways to help out with the project, [join us on Discord to collaborate](https://discord.gg/zE8guNfG49)! See [Development](#development) for more info (**branch off the `dev` branch to make your changes**).
+Project Sunshine welcomes contributors! Below are some ways to help out with the project, [join us on Discord to collaborate](https://discord.gg/jeDvQc2rSX)! See [Development](#development) for more info (**branch off the `dev` branch to make your changes**).
 
 - Determining centralization vectors
 - Determing metrics to monitor these vectors 
