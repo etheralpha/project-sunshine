@@ -1,11 +1,11 @@
 import fetch from 'node-fetch';
-const API_ENDPOINT = 'https://migalabs.es/api/v1/client-distribution?crawler=london';
+const API_ENDPOINT = 'https://migalabs.es/api/v1/client-distribution';
 let data;
 let lastUpdate = 0;
 
 
 // https://migalabs.es/api-documentation
-// https://migalabs.es/api/v1/client-distribution?crawler=london
+// https://migalabs.es/api/v1/client-distribution
 // example response:
 // {
 //     "Grandine": 26,
