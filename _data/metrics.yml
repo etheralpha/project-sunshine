@@ -19,12 +19,12 @@
 # - title: 
 #   id: 
 #   disabled: true
-#   modal_enabled: false
+#   modal_enabled: true
 #   tooltip_enabled: false
 #   tooltip_text: 
-#   default_value: 
-#   danger_value: 
-#   goal_value: 
+#   default_value: 50
+#   danger_value: 30
+#   goal_value: 70
 #   target_value: 
 #   target_date: 
 #   influence: 1
@@ -37,12 +37,12 @@
   disabled: false
   modal_enabled: true
   tooltip_enabled: true
-  tooltip_text: This metric shows percent marketshare of the minority consensus clients.
-  default_value: 48.4
+  tooltip_text: This metric shows the percent marketshare of the minority consensus clients.
+  default_value: 59.57
   danger_value: 34
   goal_value: 67
   target_value: 55
-  target_date: Jun 2022
+  target_date: Jul 2022
   influence: 1
   data_sources: 
     - blockprint-consensus-diversity
@@ -53,12 +53,12 @@
   disabled: false
   modal_enabled: true
   tooltip_enabled: true
-  tooltip_text: This metric shows percent marketshare of the minority execution clients.
-  default_value: 18.08
+  tooltip_text: This metric shows the percent marketshare of the minority execution clients.
+  default_value: 16.26
   danger_value: 34
   goal_value: 67
-  target_value: 30
-  target_date: 
+  target_value: 20
+  target_date: Jul 2022
   influence: 1
   data_sources: 
     - ethernodes-execution-diversity
@@ -90,17 +90,17 @@
   target_date: 
   influence: 1
   data_sources: 
-- title: Non-Hosted Validators
+- title: Non-Hosted Validator Marketshare
   id: hosted-validators
   disabled: false
   modal_enabled: true
   tooltip_enabled: true
-  tooltip_text: This metric shows percent marketshare of nodes not operating out of data centers.
-  default_value: 41.18
+  tooltip_text: This metric shows the percent marketshare of nodes not operating out of data centers.
+  default_value: 41.9
   danger_value: 30
   goal_value: 60
   target_value: 50
-  target_date: 
+  target_date: Jul 2022
   influence: 1
   data_sources: 
     - nodewatch-hosted-validators
@@ -110,64 +110,81 @@
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows the percent marketshare of validators not operating in the country with the highest validator count (i.e. 100% - [% of validators in a single country]).
-  default_value: 50.47
+  default_value: 50.21
   danger_value: 33
   goal_value: 66
-  target_value: 
+  target_value: Jul 2022
   target_date: 
   influence: 1
   data_sources: 
     - nodewatch-geolocation
 - title: Staking Pool Diversity
   id: pool-diversity
-  disabled: true
+  disabled: false
   modal_enabled: true
   tooltip_enabled: true
-  tooltip_text: This metric shows percent marketshare of staking pool validators not operated by the top pool.
-  default_value: 50
-  danger_value: 30
-  goal_value: 70
-  target_value: 50
-  target_date: 
+  tooltip_text: This metric shows the percent marketshare of staking pool validators not operated by the top pool.
+  default_value: 59.25
+  danger_value: 80
+  goal_value: 90
+  target_value: 75
+  target_date: Jul 2022
   influence: 1
   data_sources: 
-- title: Non-Pool Validators
+    - ratednetwork-pool-diversity
+- title: Non-Pool Validator Marketshare
   id: pool-validators
-  disabled: true
+  disabled: false
   modal_enabled: true
   tooltip_enabled: true
-  tooltip_text: This metric shows percent marketshare of validators not operated by pools.
-  default_value: 50
+  tooltip_text: This metric shows the percent marketshare of validators not operated by pools.
+  default_value: 30.92
   danger_value: 30
   goal_value: 70
   target_value: 50
-  target_date: 
+  target_date: Jul 2022
   influence: 1
   data_sources: 
-- title: Government Entity Stake Weight
-  id: government-entity
-  disabled: true
-  modal_enabled: false
+    - ratednetwork-pool-validators
+- title: Staking Entity Diversity
+  id: staking-diversity
+  disabled: false
+  modal_enabled: true
   tooltip_enabled: true
-  tooltip_text: This metric shows percent marketshare of validators operated by a single government entity (either nation-state or DAO).
+  tooltip_text: This metric shows the percent marketshare of validators not operated by the top entity (DAO, protocol, solo operator, nation-state, etc).
+  default_value: 68.94
+  danger_value: 80
+  goal_value: 90
+  target_value: 75
+  target_date: Jul 2022
+  influence: 1
+  data_sources: 
+    - ratednetwork-staking-diversity
+- title: Decentralized Stablecoin Marketshare
+  id: decentralized-stablecoins
+  disabled: true
+  modal_enabled: true
+  tooltip_enabled: false
+  tooltip_text: 
   default_value: 50
   danger_value: 30
   goal_value: 70
-  target_value: 5
+  target_value: 
   target_date: 
   influence: 1
   data_sources: 
-- title: Largest Entity Stake Weight
-  id: largest-entity
+    # - 
+- title: Stablecoin Diversity
+  id: stablecoin-diversity
   disabled: true
-  modal_enabled: false
-  tooltip_enabled: true
-  tooltip_text: This metric shows percent marketshare of validators operated by a single entity.
+  modal_enabled: true
+  tooltip_enabled: false
+  tooltip_text: 
   default_value: 50
   danger_value: 30
   goal_value: 70
-  target_value: 5
+  target_value: 
   target_date: 
   influence: 1
   data_sources: 
-
+    # - 

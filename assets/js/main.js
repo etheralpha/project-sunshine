@@ -45,6 +45,8 @@ function load() {
         if (dataSource) {
           let defaultValue = metrics[metric]["default_value"];
           getData(metricId, dataSource, defaultValue).then(updateProgressBar);
+        } else {
+          metrics[metric]["current_value"] = metrics[metric]["default_value"];
         }
       }
     }
@@ -73,33 +75,45 @@ function getDataSource(metricId) {
 // call netlify serverless function to fetch data
 async function getData(metricId, dataSource, defaultValue) {
   // get the metric object with a matching id
-  let metric = metrics.find(x => x.id === metricId);
+  let metricIndex = metrics.findIndex((metric => metric.id == metricId));
+  let metric = metrics[metricIndex];
 
   // set the metric value to the cached value, otherwise set to the default value
-  let metricValue = metric[dataSource] || defaultValue;
+  let metricValue = metric["current_value"] || defaultValue;
 
   // show the progress bar loading indicator while updating
   showLoadingBar(metricId, true);
 
   try {
     // only fetch value if it hasn't been called yet, otherwise use cached value: metric[dataSource]
-    if (!metric[dataSource]) {
+    if (!metric["dataSource"]) {
       const url = "/.netlify/functions/" + dataSource + "/";
       const [data] = await Promise.all([
         fetch(url)
       ]);
       const response = await data.json();
-      metricValue = Number(response);
+      // console.log({"metricId":metricId,"response":response});
+      if (isNumber(response)) {
+        metricValue = Number(response);
+      } else {
+        console.error(`ERROR: Unexpected response for ${metricId}`);
+      }
       // cache the response in the metric object for later use
       metric[dataSource] = metricValue;
+      metric["current_value"] = metricValue;
     }
   }
   catch {
-    console.error(`Failed to load data from ${dataSource}`)
+    console.error(`Failed to load data from ${dataSource}`);
   }
 
   // console.log({"metricId":metricId,"dataSource":dataSource,"defaultValue":defaultValue,"metricValue":metricValue});
   return [metricId, metricValue];
+}
+
+
+function isNumber(val) { 
+  return !isNaN(parseFloat(val)) && !isNaN(val - 0);
 }
 
 
@@ -174,13 +188,12 @@ async function getHealthLevel() {
   const enabledMetrics = metrics.filter(function (metric) { return metric.disabled === false; });
   enabledMetrics.map(metric => {
     let metricId = metric["id"];
-    let dataSource = getDataSource(metricId);
-    // metric[dataSource] outputs undefined even though it has a value when printing metric
+    // metric["current_value"] outputs undefined even though it has a value when printing metric
     // if (metric["id"] == "consensus-diversity") {
     //   console.log(metric);
-    //   console.log(metric[dataSource]);
+    //   console.log(metric["current_value"]);
     // }
-    let metricValue = metric[dataSource] || metric["default_value"];
+    let metricValue = metric["current_value"] || metric["default_value"];
     let maxValue = metric["max_value"] || 100;
 
     // calculate the percentage the metric is within it's current range and then get the standardized percentage
@@ -204,7 +217,7 @@ async function getHealthLevel() {
 
   // calculate the sunniness percentage
   let percent = (accumulatedValue / totalSize) + 0;
-  console.log(`The sunniness (decentralization health) level is ${Math.round(percent * 100) / 100}%`)
+  console.log(`The sunniness (decentralization health) level is ${Math.round(percent * 100) / 100}%`);
   localStorage.setItem("healthLevel", percent);
 
   return percent;
@@ -314,7 +327,7 @@ function checkDarkMode() {
     if(matched) {
       setDarkMode("true");
     } else {
-      setDarkMode("false")
+      setDarkMode("false");
     }
   } else {
     setDarkMode(darkModeEnabled);
@@ -338,6 +351,32 @@ function setDarkMode(enabled) {
     document.getElementById("enableDarkMode").classList.remove("d-none");
     localStorage.setItem("darkModeEnabled", "false");
   }
+}
+
+
+// create and link to pre-populated tweet
+function createTweet(metricId) {
+  let metric = metrics.filter( i => (i.id == metricId) );
+  metric = metric[0];
+  let url = `https://ethsunshine.com`;
+
+  // calculate health percent
+  let maxValue = metric.max_value || 100;
+  let health = Math.round(metric.current_value / maxValue * 10000) / 100;
+
+  // create the progress bar
+  let progressFillSymbol = "▓";
+  let progressFillAmount = Math.floor(health / 5);
+  let progressBarFill = `${progressFillSymbol.repeat(progressFillAmount)}`;
+  let progressRemainderSymbol = "░";
+  let progressRemainderAmount = 20 - Math.floor(health / 5);
+  let progressBarRemainder = `${progressRemainderSymbol.repeat(progressRemainderAmount)}`;
+  let progressBar = `${progressBarFill}${progressBarRemainder}`;
+
+  //compose the tweet
+  let tweet = `Ethereum's ${metric.title} Health:\n${progressBar} ${health}%\n\n${url}`;
+  let tweetLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`;
+  window.open(tweetLink, '_blank');
 }
 
 
