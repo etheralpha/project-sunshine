@@ -113,8 +113,8 @@
   default_value: 50.21
   danger_value: 33
   goal_value: 66
-  target_value: Jul 2022
-  target_date: 
+  target_value: 50
+  target_date: Jul 2022
   influence: 1
   data_sources: 
     - nodewatch-geolocation
