@@ -15,7 +15,7 @@ The purpose of Project Sunshine is to identify centralization vectors, determine
 
 ## Get Involved
 
-Project Sunshine welcomes contributors! [Join us on Discord to collaborate](https://discord.gg/zE8guNfG49).
+Project Sunshine welcomes contributors! [Join us on Discord to collaborate](https://discord.gg/jeDvQc2rSX).
 
 
 <!-- 
@@ -26,6 +26,6 @@ The purpose of Project Sunshine is to identify centralization vectors, determine
 
 ### Get Involved
 
-Project Sunshine welcomes contributors! [Join us on Discord to collaborate](https://discord.gg/zE8guNfG49).
+Project Sunshine welcomes contributors! [Join us on Discord to collaborate](https://discord.gg/jeDvQc2rSX).
 
  -->
