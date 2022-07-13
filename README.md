@@ -9,6 +9,8 @@ Bringing the light of decentralization to the darkness of centraliztion: a site 
 |[Join Discord](https://discord.gg/jeDvQc2rSX)|
 |:---:|
 
+[![gitpoap badge](https://public-api.gitpoap.io/v1/repo/etheralpha/project-sunshine/badge)](https://www.gitpoap.io/gh/etheralpha/project-sunshine)
+
 **Table of Contents**
 - [Intro](#intro)
 	- [Introduction & Purpose](#introduction--purpose)
