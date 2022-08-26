@@ -1,12 +1,12 @@
 # Project Sunshine
 
-Bringing the light of decentralization to the darkness of centraliztion: a site to monitor the health of Ethereum's decentralization
+Bringing the light of decentralization to the darkness of centralization: a site to monitor the health of Ethereum's decentralization
 
 ## Visit
 
 <https://ethsunshine.com>
 
-|[Join Discord](https://discord.gg/jeDvQc2rSX)|
+|[Join Discord](https://discord.com/invite/Consensys)|
 |:---:|
 
 **Table of Contents**
@@ -35,7 +35,7 @@ Bringing the light of decentralization to the darkness of centraliztion: a site 
 
 ### Introduction & Purpose
 
-Project Sunshine is an Ethereum community initiative to improve decentralization across the entire Ethereum ecosystem by aggregating and displaying decentralization data in an easy-to-interpret manner. The categories for decentralization aren't static, ideally, they'll begin simple and expand to cover many potential centralization metrics. Project sunshine doens't seek to generate primary data feeds, but rather to curate and encourage the development of feeds that are useful in promoting decentralization. We highly value community input and seek to become a visual manifestation of the community's beliefs regarding decentralization.
+Project Sunshine is an Ethereum community initiative to improve decentralization across the entire Ethereum ecosystem by aggregating and displaying decentralization data in an easy-to-interpret manner. The categories for decentralization aren't static, ideally, they'll begin simple and expand to cover many potential centralization metrics. Project sunshine doesn't seek to generate primary data feeds, but rather to curate and encourage the development of feeds that are useful in promoting decentralization. We highly value community input and seek to become a visual manifestation of the community's beliefs regarding decentralization.
 
 Thanks to community efforts, many are now aware that client diversity is a key security factor of any decentralized blockchain. However, it's not the only risk vector.
 
@@ -56,12 +56,12 @@ The Overall Health is calculated by taking health of each individual metric and 
 
 ### History
 
-The roots of Project Sunshine are based in the willingness of the Ethereum Community's desire to examine existing practice and harden the network through data-driven action. The first realizations regarding the need for decisive action around decentralization came in 2021 when the Prysm beacon chain implementation controlled 70%+ of the validators in a chain architecture that was designed to be multi-client. [Superphiz pushed the community to work toward greater decentrlalization](https://twitter.com/superphiz/status/1437846604707401733) and [hanni_abu](https://twitter.com/hanni_abu) responded by developing [clientdiversity.org](https://clientdiversity.org). A few months later, realizing the need to zoom out from client diversity and focus on ecosystem decentralization, superphiz imagined [project sunshine](https://twitter.com/superphiz/status/1508568072118063109) and Hanni responded to the call by assembling a team in the Ether Alpha Discord and beginning work.
+The roots of Project Sunshine are based in the willingness of the Ethereum Community's desire to examine existing practice and harden the network through data-driven action. The first realizations regarding the need for decisive action around decentralization came in 2021 when the Prysm beacon chain implementation controlled 70%+ of the validators in a chain architecture that was designed to be multi-client. [Superphiz pushed the community to work toward greater decentralization](https://twitter.com/superphiz/status/1437846604707401733) and [hanni_abu](https://twitter.com/hanni_abu) responded by developing [clientdiversity.org](https://clientdiversity.org). A few months later, realizing the need to zoom out from client diversity and focus on ecosystem decentralization, superphiz imagined [project sunshine](https://twitter.com/superphiz/status/1508568072118063109) and Hanni responded to the call by assembling a team in the Ether Alpha Discord and beginning work.
 
 
 ### Future
 
-Project Sunshine seeks to be a community driven decentralization dashboard to support continual hardening of the the Ethereum network. We actively seek to include third party data sources and contributors to site development. Project Sunshine is teaming up with [GitPOAP](https://gitpoap.io) to recognize and reward contributors who make this dashboard possible.
+Project Sunshine seeks to be a community driven decentralization dashboard to support continual hardening of the Ethereum network. We actively seek to include third party data sources and contributors to site development. Project Sunshine is teaming up with [GitPOAP](https://gitpoap.io) to recognize and reward contributors who make this dashboard possible.
 
 
 ### Contributing
@@ -69,7 +69,7 @@ Project Sunshine seeks to be a community driven decentralization dashboard to su
 Project Sunshine welcomes contributors! Below are some ways to help out with the project, [join us on Discord to collaborate](https://discord.gg/jeDvQc2rSX)! See [Development](#development) for more info (**branch off the `dev` branch to make your changes**).
 
 - Determining centralization vectors
-- Determing metrics to monitor these vectors 
+- Determining metrics to monitor these vectors 
 - Finding data sources for these metrics
 - Creating and providing data sources yourself
 - Writing content for the "Take Action" modals
@@ -132,7 +132,7 @@ This list contains centralization vectors that pose a risk to the health of the 
 	- How do we improve it?
 	- Resources (list of important links)
 1. The file name **MUST** be the same as the metric's `id` in `data/metrics.yml`.
-1. The goal is to provide and overview with link to resources for furth learning, action, dashboard, and tools. The goal (at least at the moment) is not to be an authoritative informational source, but a gateway to existing established resources.
+1. The goal is to provide an overview with links to resources for further learning, action, dashboard, and tools. The goal (at least at the moment) is not to be an authoritative informational source, but a gateway to existing established resources.
 
 
 ---
