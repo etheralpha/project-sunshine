@@ -35,23 +35,23 @@ Bringing the light of decentralization to the darkness of centraliztion: a site 
 
 ### Introduction & Purpose
 
-Project Sunshine is an Ethereum community initiative to improve decentralization across the entire Ethereum ecosystem by aggregating and displaying decentralization data in an easy-to-interpret manner. The categories for decentralization aren't static, ideally, they'll begin simple and expand to cover many potential centralization metrics. Project sunshine doens't seek to generate primary data feeds, but rather to curate and encourage the development of feeds that are useful in promoting decentralization. We highly value community input and seek to become a visual manifestation of the community's beliefs regarding decentralization.
+Project Sunshine is an Ethereum community initiative to improve decentralization across the entire Ethereum ecosystem by aggregating and displaying decentralization data in an easy-to-interpret manner. The categories for decentralization aren't static. Ideally, they'll begin simple and expand to cover many potential centralization metrics. Project sunshine doesn't seek to generate primary data feeds but rather to curate and encourage the development of good feeds in promoting decentralization. We highly value community input and strive to become a visual manifestation of the community's beliefs regarding decentralization.
 
-Thanks to community efforts, many are now aware that client diversity is a key security factor of any decentralized blockchain. However, it's not the only risk vector.
+Thanks to community efforts, many know that client diversity is a crucial security factor of any decentralized blockchain. However, it's not the only risk vector.
 
-The purpose of Project Sunshine is to identify centralization vectors, determine the metrics to monitor, set danger/goal/target values for each, and then work with the community to meet those targets. 
+Project Sunshine aims to identify centralization vectors, determine the metrics to monitor, set danger/goal/target values for each, and then work with the community to meet those targets.
 
 
 ### Goals and Targets
 
-Each decentralization category is visualized on a spectrum showing red (danger), yellow (caution), and green (good). At this time the gradient is subjective, but is intended to convey the need for action and risk to the network. Our ultimate goal is to develop evaluations that are less subjective and more empirical.
+Each decentralization category is visualized on a spectrum showing red (danger), yellow (caution), and green (good). At this time, the gradient is subjective but is intended to convey the need for action and risk to the network. Our ultimate goal is to develop less subjective and empirical evaluations.
 
 ![Project Sunshine](https://i.ibb.co/SRp3YB1/sunshine-screenshot.png)
 
 
 ### Overall Health
 
-The Overall Health is calculated by taking health of each individual metric and relative rating system and standardizing it against a global rating system. Those values are then averaged by weight of importance (currently all are equal) to obtain the Overall Health value.
+The Overall Health is calculated by taking the health of each individual metric and relative rating system and standardizing it against a global rating system. Those values are then averaged by weight of importance (currently, all are equal) to obtain the Overall Health value.
 
 
 ### History
