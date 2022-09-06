@@ -38,12 +38,14 @@
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows the percent marketshare of the minority consensus clients.
-  default_value: 59.57
+  default_value: 55.28
   danger_value: 34
   goal_value: 67
   target_value: 55
   target_date: Jul 2022
   influence: 1
+  data_name: Blockprint
+  data_link: https://github.com/sigp/blockprint
   data_sources: 
     - blockprint-consensus-diversity
     - migalabs-consensus-diversity
@@ -54,12 +56,14 @@
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows the percent marketshare of the minority execution clients.
-  default_value: 16.26
+  default_value: 19.46
   danger_value: 34
   goal_value: 67
   target_value: 20
   target_date: Jul 2022
   influence: 1
+  data_name: Ethernodes
+  data_link: https://ethernodes.org/
   data_sources: 
     - ethernodes-execution-diversity
 - title: Consensus Client Count
@@ -75,6 +79,8 @@
   target_value: 
   target_date: 
   influence: 1
+  data_name: Ethereum.org
+  data_link: http://ethereum.org/
   data_sources: 
 - title: Execution Client Count
   id: execution-clients
@@ -89,6 +95,8 @@
   target_value: 
   target_date: 
   influence: 1
+  data_name: Ethereum.org
+  data_link: http://ethereum.org/
   data_sources: 
 - title: Non-Hosted Validator Marketshare
   id: hosted-validators
@@ -96,12 +104,14 @@
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows the percent marketshare of nodes not operating out of data centers.
-  default_value: 41.9
+  default_value: 75.07
   danger_value: 30
   goal_value: 60
   target_value: 50
   target_date: Jul 2022
   influence: 1
+  data_name: Node Watch
+  data_link: https://nodewatch.io/
   data_sources: 
     - nodewatch-hosted-validators
 - title: Geolocation Diversity
@@ -110,12 +120,14 @@
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows the percent marketshare of validators not operating in the country with the highest validator count (i.e. 100% - [% of validators in a single country]).
-  default_value: 50.21
+  default_value: 49.67
   danger_value: 33
   goal_value: 66
   target_value: 50
   target_date: Jul 2022
   influence: 1
+  data_name: Node Watch
+  data_link: https://nodewatch.io/
   data_sources: 
     - nodewatch-geolocation
 - title: Staking Pool Diversity
@@ -124,12 +136,14 @@
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows the percent marketshare of staking pool validators not operated by the top pool.
-  default_value: 59.25
+  default_value: 53.6
   danger_value: 80
   goal_value: 90
   target_value: 75
   target_date: Jul 2022
   influence: 1
+  data_name: Rated Network
+  data_link: https://rated.network/
   data_sources: 
     - ratednetwork-pool-diversity
 - title: Non-Pool Validator Marketshare
@@ -138,12 +152,14 @@
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows the percent marketshare of validators not operated by pools.
-  default_value: 30.92
+  default_value: 33.66
   danger_value: 30
   goal_value: 70
   target_value: 50
   target_date: Jul 2022
   influence: 1
+  data_name: Rated Network
+  data_link: https://rated.network/
   data_sources: 
     - ratednetwork-pool-validators
 - title: Staking Entity Diversity
@@ -152,12 +168,14 @@
   modal_enabled: true
   tooltip_enabled: true
   tooltip_text: This metric shows the percent marketshare of validators not operated by the top entity (DAO, protocol, solo operator, nation-state, etc).
-  default_value: 68.94
+  default_value: 69.17
   danger_value: 80
   goal_value: 90
   target_value: 75
   target_date: Jul 2022
   influence: 1
+  data_name: Rated Network
+  data_link: https://rated.network/
   data_sources: 
     - ratednetwork-staking-diversity
 - title: Decentralized Stablecoin Marketshare
@@ -172,6 +190,8 @@
   target_value: 
   target_date: 
   influence: 1
+  data_name: 
+  data_link: 
   data_sources: 
     # - 
 - title: Stablecoin Diversity
@@ -186,5 +206,7 @@
   target_value: 
   target_date: 
   influence: 1
+  data_name: 
+  data_link: 
   data_sources: 
     # - 
