@@ -65,8 +65,8 @@ layout: default
             <!-- Card Body -->
             <div class="card-body d-flex flex-column">
               <div class="row flex-grow-1">
-                <!-- Title & Tooltip -->
-                <div class="col-12 col-sm-8 col-xl-9">
+                <div class="d-flex justify-content-between">
+                  <!-- Title & Tooltip -->
                   <h5 class="card-title">
                     {{metric.title}}
                     {%- if metric.tooltip_enabled and metric.tooltip_text -%}
@@ -75,10 +75,16 @@ layout: default
                       </span>
                     {%- endif -%}
                   </h5>
+                  <!-- Twitter Share -->
+                  {%- if metric.disabled == false -%}
+                    <a class="tweet-link text-decoration-none me-1" onclick="createTweet('{{metric.id}}')">
+                      {{site.data.icons.twitter}}
+                    </a>
+                  {%- endif -%}
                 </div>
                 <!-- Source Select/Dropdown -->
                 <div class="d-none d-sm-inline col-4 col-xl-3 {{hide}}">
-                  <div class="form-floating">
+                  <div class="d-none form-floating">
                     {%- if metric.data_sources.size > 1 -%}
                       <select id="select-{{metric.id}}" class="form-select form-select-sm" aria-label="data source select" onchange='getData("{{metric.id}}", this.value, {{metric.default_value}}).then(updateProgressBar)'>
                         {%- for source in metric.data_sources -%}
@@ -108,7 +114,7 @@ layout: default
                   {%- assign percent = "" -%}
                 {%- endif -%}
                 {%- if metric.target_value -%}
-                  <label class="progress-label fw-normal small">
+                  <label class="d-none progress-label fw-normal small">
                     Target: {{metric.target_value}}{{percent}}
                     {%- if metric.target_date -%}
                       <span class="d-none d-xl-inline ms-1">by {{metric.target_date}}</span>
@@ -181,9 +187,15 @@ layout: default
                   <a class="btn btn-sunshine text-dark btn-sm {{hide}}" data-bs-toggle="modal" data-bs-target="#modal-{{metric.id}}">Take Action!</a>
                 {%- endif -%}
                 {%- if metric.disabled == false -%}
-                  <a class="tweet-link text-decoration-none mt-1 me-1" onclick="createTweet('{{metric.id}}')">
-                    {{site.data.icons.twitter}}
-                  </a>
+                  {%- if metric.data_name and metric.data_link -%}
+                    <small class="mt-2 text-muted">
+                      <small>
+                        Source: 
+                        <a href="{{metric.data_link}}" class="text-muted">{{metric.data_name}}</a>
+                        <!-- <a href="{{metric.data_link}}" class="text-muted">Data Source</a> -->
+                      </small>
+                    </small>
+                  {%- endif -%}
                 {%- endif -%}
               </div>
             </div>
